@@ -2,10 +2,16 @@ package com.example.team4_ca_mobile;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.animation.ArgbEvaluator;
+import android.animation.ObjectAnimator;
+import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.Animation;
 import android.widget.Button;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -16,6 +22,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
 
         loginOrSignUpBtn();
+        blinking();
     }
 
     protected void loginOrSignUpBtn(){
@@ -38,5 +45,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             Intent intent = new Intent(this,sign_up.class);
             startActivity(intent);
         }
+    }
+
+    @SuppressLint("WrongConstant")
+    private void blinking(){
+        TextView textView = findViewById(R.id.houseOfCardTxtView);
+        ObjectAnimator animator = ObjectAnimator.ofInt(textView,"textColor", Color.WHITE);
+        animator.setDuration(1500);
+        animator.setEvaluator(new ArgbEvaluator());
+        animator.setRepeatMode(Animation.REVERSE);
+        animator.setRepeatCount(Animation.INFINITE);
+        animator.start();
     }
 }
