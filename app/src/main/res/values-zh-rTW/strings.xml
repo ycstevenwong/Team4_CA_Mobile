@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Team4_CA_Mobile</string>
+    <string name="house_of_cards">HOUSE OF CARDS</string>
+    <string name="login">登入</string>
+    <string name="sign_up">登錄</string>
+</resources>
