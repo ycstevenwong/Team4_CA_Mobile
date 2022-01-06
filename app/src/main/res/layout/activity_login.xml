@@ -4,16 +4,91 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".login">
+    tools:context=".login"
+    android:background="@color/red">
 
 
+    <ImageView
+        android:layout_width="350dp"
+        android:layout_height="600dp"
+        android:src="@drawable/signup_login"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:id="@+id/loginImg"
+        />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
+        android:text="@string/house_of_cards"
+        android:textSize="30sp"
+        android:fontFamily="@font/druk_wide_bold"
+        android:textColor="@color/white"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="125dp"
+        android:layout_marginLeft="-10dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintHorizontal_bias="0.15"
+        android:text="@string/login"
+        android:textSize="30sp"
+        android:textColor="@color/white"
+        android:background="@color/gray"
+        android:paddingRight="60dp"
+        android:paddingLeft="20dp"
+        android:paddingVertical="20dp"
+        android:fontFamily="@font/druk_wide_bold"
+        android:id="@+id/loginTxtView"/>
+
+    <EditText
+        android:layout_width="300dp"
+        android:layout_height="48dp"
+        app:layout_constraintTop_toBottomOf="@id/loginTxtView"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        android:text="@string/login"
-        android:textSize="20dp"/>
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintVertical_bias="0.1"
+        android:paddingLeft="20dp"
+        android:id="@+id/loginUsernameEditText"
+        android:text="@string/username"
+        android:background="@color/gray"
+        android:textColor="@color/light_dark"
+        android:fontFamily="@font/monument_extended"/>
+    <EditText
+        android:layout_width="300dp"
+        android:layout_height="48dp"
+        app:layout_constraintTop_toBottomOf="@id/loginUsernameEditText"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintVertical_bias="0.1"
+        android:paddingLeft="20dp"
+        android:id="@+id/loginPasswordEditText"
+        android:text="@string/password"
+        android:background="@color/gray"
+        android:textColor="@color/light_dark"
+        android:fontFamily="@font/monument_extended"/>/>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/loginPasswordEditText"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintVertical_bias="0.1"
+        android:layout_marginLeft="175dp"
+        android:backgroundTint="@color/red"
+        android:fontFamily="@font/monument_extended"
+        android:textColor="@color/white"
+        android:paddingHorizontal="20dp"
+        android:text="@string/submit"
+        android:id="@+id/loginBtn"
+        app:cornerRadius="10dp"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
