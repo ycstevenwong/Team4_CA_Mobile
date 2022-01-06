@@ -11,10 +11,10 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="35dp"
         android:layout_gravity="center"
         android:text="@string/urlText"
-        android:textColor="@color/red"
+        android:textColor="@color/white"
         android:textSize="18sp"
         android:textAllCaps="true"
         android:textStyle="bold"/>
@@ -22,13 +22,16 @@
     <EditText
         android:id="@+id/url"
         android:layout_width="350dp"
-        android:layout_height="35dp"
+        android:layout_height="48dp"
         android:layout_gravity="center"
         android:layout_marginLeft="5dp"
         android:layout_marginTop="20dp"
         android:background="@color/white"
+        android:importantForAutofill="no"
+        android:imeOptions="actionSend"
         android:textColor="@color/black"
-        android:textSize="16sp" />
+        android:textSize="16sp"
+        android:inputType="textNoSuggestions"/>
 
     <Button
         android:id="@+id/fetchBtn"
@@ -48,6 +51,6 @@
         android:horizontalSpacing="5dp"
         android:numColumns="4"
         android:verticalSpacing="20dp"
-        android:background="@color/white"
+        android:background="@color/red"
         android:layout_gravity="center"/>
 </LinearLayout>
