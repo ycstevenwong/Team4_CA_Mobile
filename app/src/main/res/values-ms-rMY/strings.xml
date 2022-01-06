@@ -4,4 +4,7 @@
     <string name="house_of_cards">HOUSE OF CARDS</string>
     <string name="login">LOG MASUK</string>
     <string name="sign_up">DAFTAR</string>
+    <string name="username">Nama Pengguna</string>
+    <string name="password">Kata Laluan</string>
+    <string name="submit">Daftar</string>
 </resources>
