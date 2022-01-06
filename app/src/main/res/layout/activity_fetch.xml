@@ -24,8 +24,8 @@
         android:layout_width="350dp"
         android:layout_height="48dp"
         android:layout_gravity="center"
-        android:layout_marginLeft="5dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="10dp"
         android:background="@color/white"
         android:importantForAutofill="no"
         android:imeOptions="actionSend"
@@ -38,19 +38,33 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:text="@string/fetch"
         android:backgroundTint="@color/light_dark"
         android:textColor="@color/white"/>
 
-    <GridView
-        android:id="@+id/gridView"
+    <ProgressBar
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="15dp"
+        android:background="@color/white"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Downloading"
+        android:textColor="@color/white"/>
+
+    <GridView
+        android:id="@+id/gridView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
-        android:horizontalSpacing="5dp"
-        android:numColumns="4"
-        android:verticalSpacing="20dp"
+        android:horizontalSpacing="0dp"
+        android:numColumns="5"
+        android:verticalSpacing="0dp"
         android:background="@color/red"
-        android:layout_gravity="center"/>
+        android:layout_gravity="center" />
 </LinearLayout>

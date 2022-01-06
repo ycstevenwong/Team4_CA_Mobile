@@ -74,7 +74,7 @@
         android:text="@string/password"
         android:background="@color/gray"
         android:textColor="@color/light_dark"
-        android:fontFamily="@font/monument_extended"/>/>
+        android:fontFamily="@font/monument_extended"/>
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
