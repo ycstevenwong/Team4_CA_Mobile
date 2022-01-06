@@ -11,10 +11,10 @@
         android:theme="@style/FullScreen">
         <activity
             android:name=".sign_up"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".login"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".MainActivity"
             android:exported="true">
