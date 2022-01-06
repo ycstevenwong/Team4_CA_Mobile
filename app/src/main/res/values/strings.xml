@@ -7,4 +7,7 @@
     <string name="password">Password</string>
     <string name="submit">Submit</string>
     <string name="logout">Logout</string>
+    <string name="dev_name">Developed by Team 4</string>
+    <string name="fetch">CLICK To Fetch Images</string>
+    <string name="urlText">Enter URL:</string>
 </resources>
