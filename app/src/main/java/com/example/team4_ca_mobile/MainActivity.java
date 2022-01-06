@@ -12,7 +12,7 @@ import android.view.View;
 import android.view.animation.Animation;
 import android.widget.Button;
 import android.widget.TextView;
-
+// test comment
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     private Button button;

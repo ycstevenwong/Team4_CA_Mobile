@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Team4_CA_Mobile</string>
-    <string name="house_of_cards">HOUSE OF CARDS</string>
-    <string name="login">LOGIN</string>
-    <string name="sign_up">Sign up</string>
+    <string name="house_of_cards">पत्तों का घर</string>
+    <string name="login">लॉग इन करें</string>
+    <string name="sign_up">साइन अप करें</string>
+    <string name="username">नाम</string>
+    <string name="password">पासवर्ड</string>
+    <string name="submit">जमा करें</string>
+    <string name="dev_name">टीम 4 . द्वारा विकसित</string>
 </resources>
