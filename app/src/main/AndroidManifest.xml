@@ -16,7 +16,7 @@
             android:exported="false" />
         -->
         <activity
-            android:name=".main_menu"
+            android:name=".MainMenuActivity"
             android:exported="false" />
         <activity
             android:name=".sign_up"

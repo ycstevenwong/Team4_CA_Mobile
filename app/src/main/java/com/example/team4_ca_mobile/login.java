@@ -49,7 +49,7 @@ public class login extends AppCompatActivity implements View.OnClickListener {
             }
             if(found){
                 editor.putString("username",currUsername);
-                Intent intent = new Intent(this,main_menu.class);
+                Intent intent = new Intent(this, MainMenuActivity.class);
                 intent.putExtra("username",currUsername);
                 startActivity(intent);
             }else{

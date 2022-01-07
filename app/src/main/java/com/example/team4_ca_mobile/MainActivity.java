@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         currUser = getSharedPreferences("currUser",MODE_PRIVATE);
 
         if(currUser.contains("username")){
-            intent = new Intent(this,main_menu.class);
+            intent = new Intent(this, MainMenuActivity.class);
             intent.putExtra("username",currUser.getString("username",null));
             startActivity(intent);
         }
