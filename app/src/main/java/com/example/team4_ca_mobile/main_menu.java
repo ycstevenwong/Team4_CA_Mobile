@@ -39,7 +39,7 @@ public class main_menu extends AppCompatActivity implements View.OnClickListener
             editor.commit();
             Intent intent = new Intent(this,MainActivity.class);
             startActivity(intent);
-            Toast.makeText(this, "Logout", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "You've logged out", Toast.LENGTH_SHORT).show();
         }
     }
 }

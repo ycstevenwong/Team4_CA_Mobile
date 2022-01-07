@@ -10,4 +10,15 @@
     <string name="dev_name">Developed by Team 4</string>
     <string name="fetch">CLICK To Fetch Images</string>
     <string name="urlText">Enter URL:</string>
+    <string name="mainMenuText">User</string>
+    <string name="mainMenuWelcome">Welcome</string>
+    <string name="mainMenuRules">How To Play \n
+        1. Give us a cool URL with images. \n
+        2. We will download 20 images from it. \n
+        3. Now you the select 6 images you love!
+        3. A match board will be created for you from the 6 images. \n
+        4. Match all 6 images in the fastest time possible. \n
+        5. Start playing now!
+    </string>
+    <string name="startGame">Start Game</string>
 </resources>
