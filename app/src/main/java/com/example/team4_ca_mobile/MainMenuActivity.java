@@ -13,8 +13,10 @@ import android.widget.Toast;
 
 public class MainMenuActivity extends AppCompatActivity implements View.OnClickListener {
     Button logout;
+    Button startGameBtn;
     TextView username;
     SharedPreferences currUser;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,6 +30,8 @@ public class MainMenuActivity extends AppCompatActivity implements View.OnClickL
         String user = intent.getStringExtra("username");
         username.setText(user);
 
+        startGameBtn = findViewById(R.id.startGameBtn);
+        startGameBtn.setOnClickListener(this);
     }
 
     @Override
@@ -41,5 +45,23 @@ public class MainMenuActivity extends AppCompatActivity implements View.OnClickL
             startActivity(intent);
             Toast.makeText(this, "You've logged out", Toast.LENGTH_SHORT).show();
         }
+        else if(id == R.id.startGameBtn) {
+            startGame();
+        }
     }
+
+    public void startGame() {
+        Intent intent = new Intent(this, FetchActivity.class);
+        startActivity(intent);
+    }
+
 }
+
+
+
+
+
+
+
+
+

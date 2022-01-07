@@ -5,7 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/black"
     tools:context=".FetchActivity">
 
     <TextView
@@ -14,7 +13,8 @@
         android:layout_marginTop="35dp"
         android:layout_gravity="center"
         android:text="@string/urlText"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
+        android:fontFamily="@font/druk_wide_bold"
         android:textSize="18sp"
         android:textAllCaps="true"
         android:textStyle="bold"/>
@@ -26,7 +26,7 @@
         android:layout_gravity="center"
         android:layout_marginStart="5dp"
         android:layout_marginTop="10dp"
-        android:background="@color/white"
+        android:background="@color/gray"
         android:importantForAutofill="no"
         android:imeOptions="actionSend"
         android:textColor="@color/black"
@@ -39,8 +39,9 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="10dp"
+        android:fontFamily="@font/monument_extended"
         android:text="@string/fetch"
-        android:backgroundTint="@color/light_dark"
+        android:backgroundTint="@color/black"
         android:textColor="@color/white"/>
 
     <ProgressBar
@@ -48,15 +49,16 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="15dp"
-        android:background="@color/white"
+        android:background="@color/gray"
         style="?android:attr/progressBarStyleHorizontal"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="Downloading"
-        android:textColor="@color/white"/>
+        android:fontFamily="@font/monument_extended"
+        android:text="@string/download"
+        android:textColor="@color/black"/>
 
     <GridView
         android:id="@+id/gridView"
@@ -68,4 +70,10 @@
         android:verticalSpacing="0dp"
         android:background="@color/red"
         android:layout_gravity="center" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/app_image" />
 </LinearLayout>

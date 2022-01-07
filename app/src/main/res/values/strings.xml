@@ -10,6 +10,7 @@
     <string name="dev_name">Developed by Team 4</string>
     <string name="fetch">CLICK To Fetch Images</string>
     <string name="urlText">Enter URL:</string>
+    <string name="download">Downloading</string>
     <string name="mainMenuText">User</string>
     <string name="mainMenuWelcome">Welcome</string>
     <string name="mainMenuRulesTitle">HOW TO PLAY?</string>

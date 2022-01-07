@@ -38,7 +38,8 @@
         </activity>
         <activity
             android:name=".FetchActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".MainMenuActivity" />
         <activity
             android:name=".GamePlayActivity"
             android:exported="false" />
