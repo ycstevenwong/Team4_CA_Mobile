@@ -12,13 +12,13 @@
     <string name="urlText">Enter URL:</string>
     <string name="mainMenuText">User</string>
     <string name="mainMenuWelcome">Welcome</string>
-    <string name="mainMenuRules">How To Play \n
-        1. Give us a cool URL with images. \n
-        2. We will download 20 images from it. \n
-        3. Now you the select 6 images you love!
-        3. A match board will be created for you from the 6 images. \n
-        4. Match all 6 images in the fastest time possible. \n
-        5. Start playing now!
+    <string name="mainMenuRulesTitle">HOW TO PLAY?</string>
+    <string name="mainMenuRules">
+        Give us a cool URL with images \n . \n
+        We will download 20 images \n . \n
+        Now select 6 images you love! \n . \n
+        A match board will be created \n . \n
+        Match all 6 image pairs in the fastest time possible \n
     </string>
     <string name="startGame">Start Game</string>
 </resources>
