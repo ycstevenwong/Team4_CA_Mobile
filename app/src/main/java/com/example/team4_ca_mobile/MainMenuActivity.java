@@ -21,14 +21,16 @@ public class MainMenuActivity extends AppCompatActivity implements View.OnClickL
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_menu);
+
         currUser = getSharedPreferences("currUser",MODE_PRIVATE);
-        logout = findViewById(R.id.logoutBtn);
-        logout.setOnClickListener(this);
 
         username = findViewById(R.id.main_menuTxtView);
         Intent intent = getIntent();
         String user = intent.getStringExtra("username");
         username.setText(user);
+
+        logout = findViewById(R.id.logoutBtn);
+        logout.setOnClickListener(this);
 
         startGameBtn = findViewById(R.id.startGameBtn);
         startGameBtn.setOnClickListener(this);
