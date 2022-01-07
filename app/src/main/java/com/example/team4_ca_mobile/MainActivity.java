@@ -6,6 +6,7 @@ import android.animation.ArgbEvaluator;
 import android.animation.ObjectAnimator;
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
@@ -16,11 +17,19 @@ import android.widget.TextView;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     private Button button;
+    private SharedPreferences currUser;
+    private Intent intent;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        currUser = getSharedPreferences("currUser",MODE_PRIVATE);
 
+        if(currUser.contains("username")){
+            intent = new Intent(this,main_menu.class);
+            intent.putExtra("username",currUser.getString("username",null));
+            startActivity(intent);
+        }
         loginOrSignUpBtn();
         blinking();
     }
