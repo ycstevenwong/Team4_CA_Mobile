@@ -57,7 +57,7 @@
         app:layout_constraintVertical_bias="0.1"
         android:paddingLeft="20dp"
         android:id="@+id/loginUsernameEditText"
-        android:text="@string/username"
+        android:hint="@string/username"
         android:background="@color/gray"
         android:textColor="@color/light_dark"
         android:fontFamily="@font/monument_extended"/>
@@ -71,7 +71,7 @@
         app:layout_constraintVertical_bias="0.1"
         android:paddingLeft="20dp"
         android:id="@+id/loginPasswordEditText"
-        android:text="@string/password"
+        android:hint="@string/password"
         android:background="@color/gray"
         android:textColor="@color/light_dark"
         android:fontFamily="@font/monument_extended"/>
