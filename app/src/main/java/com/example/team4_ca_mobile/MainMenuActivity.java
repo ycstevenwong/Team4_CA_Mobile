@@ -13,7 +13,7 @@ import android.widget.Toast;
 
 public class MainMenuActivity extends AppCompatActivity implements View.OnClickListener {
     Button logout;
-    Button startGameBtn;
+    Button startGameBtn, startGameBtnv2;
     TextView username;
     SharedPreferences currUser;
 
@@ -34,6 +34,10 @@ public class MainMenuActivity extends AppCompatActivity implements View.OnClickL
 
         startGameBtn = findViewById(R.id.startGameBtn);
         startGameBtn.setOnClickListener(this);
+
+
+        startGameBtnv2 = findViewById(R.id.startGameBtnv2);
+        startGameBtnv2.setOnClickListener(this);
     }
 
     @Override
@@ -50,10 +54,19 @@ public class MainMenuActivity extends AppCompatActivity implements View.OnClickL
         else if(id == R.id.startGameBtn) {
             startGame();
         }
+        else if(id == R.id.startGameBtnv2) {
+            startGamev2();
+        }
     }
 
     public void startGame() {
         Intent intent = new Intent(this, FetchActivity.class);
+        startActivity(intent);
+    }
+
+
+    public void startGamev2() {
+        Intent intent = new Intent(this, activityFetchImages.class);
         startActivity(intent);
     }
 
