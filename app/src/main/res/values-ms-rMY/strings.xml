@@ -6,5 +6,25 @@
     <string name="sign_up">DAFTAR</string>
     <string name="username">Nama Pengguna</string>
     <string name="password">Kata Laluan</string>
-    <string name="submit">Daftar</string>
+    <string name="submit">Hantar</string>
+    <string name="logout">Log Keluar</string>
+    <string name="dev_name">Ciptaan Team 4</string>
+    <string name="fetch">Cari</string>
+    <string name="urlText">URL:</string>
+    <string name="download">Memuat turun</string>
+    <string name="mainMenuText">Ahli</string>
+    <string name="mainMenuWelcome">Selamat Datang</string>
+    <string name="mainMenuRulesTitle">BAGAIMANA BERMAIN?</string>
+    <string name="mainMenuRules">
+        Masukkan URL kegemaran anda \n . \n
+        20 gambar akan dimuat turn \n . \n
+        Pilih 6 gambar yang anda suka! \n . \n
+        Permainan akan dicipta untuk anda \n . \n
+        Padankan 6 jodoh gambar secepat mungkin \n \n
+        PERHATIAN: Jika gambar tidak dimuat turn, sila cuba URL lain. \n
+        URL tersebut mungkin mengandungi format gambar yang tidak sesuai.
+    </string>
+    <string name="startGame">Mula</string>
+
+
 </resources>

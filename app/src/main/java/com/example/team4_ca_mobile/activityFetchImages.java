@@ -40,27 +40,18 @@ public class activityFetchImages extends AppCompatActivity {
     // define all the variables
     Button fetchButton;
     String[] standardNum = {"1", "2", "3", "4", "5", "6"};
-    int i = 0;
     ProgressBar progressBar;
     TextView progressBarTextView;
-
     EditText url;
-
+    int i = 0;
     static  int row =0;
     static  int count=0;
-
 
     // the thread
     private Thread fetchImagesThread;
 
-
-
     // array of selected images
     ArrayList<ImageView> imageCollection = new ArrayList<ImageView>();
-
-
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,6 +60,7 @@ public class activityFetchImages extends AppCompatActivity {
 
         // start the process
         initUIComponents();
+
     }
 
     private void initUIComponents() {
@@ -78,9 +70,8 @@ public class activityFetchImages extends AppCompatActivity {
 
         progressBarTextView = findViewById(R.id.progressBarText);
 
-
-
         url = findViewById(R.id.url);
+
        // Toast.makeText(this,url.getText().toString(),LENGTH_SHORT).show();
         ImageView imageView01 = findViewById(R.id.image01);
         ImageView imageView02 = findViewById(R.id.image02);
@@ -108,59 +99,50 @@ public class activityFetchImages extends AppCompatActivity {
                 imageView07,imageView08,imageView09,imageView10,imageView11,imageView12,imageView13,
                 imageView14,imageView15,imageView16,imageView17,imageView18,imageView19,imageView20};
 
-
         fetchButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
+                String myUrl = url.getText().toString();
+
+                // if url is empty or invalid
+                if (myUrl.isEmpty() || myUrl.contains("https") != true) {
+                    System.out.println("Oops, wrong URL");
+                    //Toast.makeText(activityFetchImages.this, "Please enter a URL", LENGTH_SHORT).show();
+                }
 
                 fetchImagesThread = new Thread(new Runnable() {
                     @Override
                     public void run() {
-                        String myUrl = url.getText().toString();
-
-                        // if url is empty
-                        if(myUrl.isEmpty())
-                        {
-                            Toast.makeText(activityFetchImages.this, "Please enter a URL", LENGTH_SHORT).show();
+                        if(fetchImagesThread.isInterrupted()) {
+                            return;
                         }
-
-
-
-
                         try {
-                           Document  document = Jsoup.connect(myUrl).get();
-                           //System.out.println(document.body());
+                            Document document = Jsoup.connect(myUrl).get();
+                            //System.out.println(document.body());
                             Elements images = document.select("img[src]");
-                            row =0;
-                            count=0;
+                            row = 0;
+                            count = 0;
 
+                            System.out.println("count of rows " + row);
+                            System.out.println("count of counts " + count);
 
-                            System.out.println("count of rows "+ row);
-                            System.out.println("count of counts "+ count);
-
-                            for(Element image: images)
-                            {
+                            for (Element image : images) {
                                 String imgSrc = image.attr("src");
                                 System.out.println(imgSrc);
 
-                                if( imgSrc.contains(".jpg") || imgSrc.contains(".jpeg"))
-                                {
-
-                                    System.out.println("2count of rows "+ row);
-                                    System.out.println("2count of counts "+ count);
-                                    if(count <20)
-                                    {
-
-                                        System.out.println("3count of rows "+ row);
-                                        System.out.println("3count of counts "+ count);
+                                if (imgSrc.contains(".jpg") || imgSrc.contains(".jpeg")) {
+                                    System.out.println("2count of rows " + row);
+                                    System.out.println("2count of counts " + count);
+                                    if (count < 20) {
+                                        System.out.println("3count of rows " + row);
+                                        System.out.println("3count of counts " + count);
                                         File destFile = makeFileDestPath(imgSrc);
 
                                       /*  if (row == 20) {
                                             row =0;
-                                        }
-*/
-                                        if (downloadImages(imgSrc, destFile) ) {
+                                        }*/
+                                        if (downloadImages(imgSrc, destFile)) {
                                             runOnUiThread(new Runnable() {
                                                 @Override
                                                 public void run() {
@@ -170,67 +152,43 @@ public class activityFetchImages extends AppCompatActivity {
 
                                                     Bitmap bitmap = BitmapFactory.decodeFile(path);
 
-                                                    System.out.println("4count of rows "+ row);
-                                                    System.out.println("4count of counts "+ count);
-                                                    if(count<20)
-                                                    {
-
+                                                    System.out.println("4count of rows " + row);
+                                                    System.out.println("4count of counts " + count);
+                                                    if (count < 20) {
                                                         imgViews[count].setImageBitmap(bitmap);
+                                                        progressBarTextView.setText
+                                                                (String.format("Downloading %d of %d images...", count, 20));
+                                                        }
+                                                        progressBar.setVisibility(View.VISIBLE);
+                                                        progressBar.setProgress(row);
+                                                        count = count + 1;
+
+                                                        if (count == 20) {
+                                                        progressBar.setVisibility(View.GONE);
+                                                        progressBarTextView.setText("Complete");
                                                     }
-
-
-                                                    progressBar.setVisibility(View.VISIBLE);
-                                                    progressBar.setProgress(row);
-                                                    progressBarTextView.setText
-                                                            (String.format("Downloading %d of %d images...", count, 20));
-                                                    count = count + 1;
-                                                   // row = row + 1;
+                                                        // row = row + 1;
                                                 }
                                             });
                                         }
-
-
                                     }
-
                                 }
                             }
-
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
-
-
-
-
-
-
-
-
-
-
-
                         /*
                             File destFile = makeFileDestPath(imgSrc);
                             downloadImages(imgSrc, destFile);*/
-
-
                     }
                 });
-
                 fetchImagesThread.start();
-
             }
         });
-
-
-
-
-
 
     }
 
     private boolean downloadImages(String url, File destFile) {
-
         try {
             URL myUrl = new URL(url);
             URLConnection conn = myUrl.openConnection();
@@ -257,15 +215,12 @@ public class activityFetchImages extends AppCompatActivity {
         String destFilename = UUID.randomUUID().toString() +
                 imgURL.lastIndexOf(".") + 1;
 
-
         File dir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
         File destFile = new File(dir, destFilename );
 
        System.out.println(destFile.getAbsolutePath());
         return destFile;
     }
-
-
 
     private String saveToFile(Bitmap bitmapImage) {
 
@@ -281,17 +236,13 @@ public class activityFetchImages extends AppCompatActivity {
             // Use the compress method on the BitMap object to write image to the OutputStream
             bitmapImage.compress(Bitmap.CompressFormat.JPEG, 100, fos);
         }
-        catch (Exception e)
-        {
+        catch (Exception e) {
             e.printStackTrace();
         }
-        finally
-        {
-            try
-            {
+        finally {
+            try {
                 fos.close();
-            } catch (IOException e)
-            {
+            } catch (IOException e) {
                 e.printStackTrace();
             }
         }
@@ -301,11 +252,8 @@ public class activityFetchImages extends AppCompatActivity {
 
 
     public void sendSelectedImage(View v) throws FileNotFoundException {
-
-
      // deselect and select logic
         ImageView selectedImage = (ImageView) v;
-
 
         if(imageCollection.size() <= 4) {
 
@@ -319,9 +267,7 @@ public class activityFetchImages extends AppCompatActivity {
                 imageCollection.add(selectedImage);
                 Drawable highlight = getResources().getDrawable(R.drawable.highlight);
                 selectedImage.setBackground(highlight);
-
             }
-
         }
         else
         {
@@ -334,14 +280,12 @@ public class activityFetchImages extends AppCompatActivity {
                 BitmapDrawable bitmapDrawable = (BitmapDrawable) imageCollection.get(i).getDrawable();
                 Bitmap bitmap = bitmapDrawable.getBitmap();
                  filepath = saveToFile(bitmap);
-
             }
 
             Intent i = new Intent(activityFetchImages.this, MainActivity.class);
             i.putExtra("img_path", filepath);
             System.out.println(filepath);
             startActivity(i);
-
         }
 
 

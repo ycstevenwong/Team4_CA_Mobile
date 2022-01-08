@@ -10,7 +10,7 @@
     <string name="dev_name">Developed by Team 4</string>
     <string name="fetch">Fetch</string>
     <string name="urlText">Enter URL:</string>
-    <string name="download">Downloading</string>
+    <string name="download">Waiting for URL</string>
     <string name="mainMenuText">User</string>
     <string name="mainMenuWelcome">Welcome</string>
     <string name="mainMenuRulesTitle">HOW TO PLAY?</string>
@@ -19,7 +19,10 @@
         We will download 20 images \n . \n
         Select 6 images you love! \n . \n
         A match board will be created \n . \n
-        Match all 6 image pairs in the fastest time possible \n
+        Match all 6 image pairs in the fastest time possible \n \n
+        NOTE: If images are not loaded upon clicking Fetch, kindly try another URL. \n
+        It may be due to compatible image formats. \n
+
     </string>
     <string name="startGame">Start Game</string>
 </resources>

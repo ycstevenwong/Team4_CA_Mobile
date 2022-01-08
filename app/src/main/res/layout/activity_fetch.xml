@@ -8,6 +8,7 @@
     tools:context=".FetchActivity">
 
     <TextView
+        android:id="@+id/urlText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="35dp"
@@ -45,6 +46,7 @@
         android:textColor="@color/white"/>
 
     <ProgressBar
+        android:id="@+id/progressBar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -53,6 +55,7 @@
         style="?android:attr/progressBarStyleHorizontal"/>
 
     <TextView
+        android:id="@+id/progressBarText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -60,20 +63,20 @@
         android:text="@string/download"
         android:textColor="@color/black"/>
 
-    <GridView
-        android:id="@+id/gridView"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/allImages"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
-        android:horizontalSpacing="0dp"
-        android:numColumns="5"
-        android:verticalSpacing="0dp"
         android:background="@color/red"
-        android:layout_gravity="center" />
+        android:layout_gravity="center"
+        android:clickable="true"
+        android:scrollbarStyle="insideOverlay" />
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/fetchImageView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:srcCompat="@drawable/app_image" />
+
 </LinearLayout>

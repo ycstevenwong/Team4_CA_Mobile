@@ -9,14 +9,12 @@
 
     <LinearLayout
         android:id="@+id/topLayout"
-
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:orientation="vertical"
         app:layout_constraintHeight_percent="0.1"
-        app:layout_constraintTop_toTopOf="parent"
-        >
+        app:layout_constraintTop_toTopOf="parent">
 
     <LinearLayout
         android:id="@+id/userInput"
@@ -25,10 +23,8 @@
         android:layout_margin="10dp"
         android:orientation="horizontal">
 
-
         <EditText
             android:id="@+id/url"
-
             android:layout_width="300dp"
             android:layout_height="40dp"
             android:layout_gravity="center"
@@ -40,15 +36,11 @@
             android:imeOptions="actionSend"
             android:textColor="@color/black"
             android:textSize="16sp"
-
-            android:inputType="textNoSuggestions"
-            />
+            android:inputType="textNoSuggestions" />
 
         <Button
             android:id="@+id/fetchBtn"
             android:padding="2dp"
-
-
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -58,6 +50,7 @@
             android:backgroundTint="@color/black"
             android:textColor="@color/white"/>
     </LinearLayout>
+
         <ProgressBar
             android:id="@+id/progressBar"
             android:layout_width="match_parent"
@@ -66,11 +59,8 @@
             android:layout_height="20dp"
             android:layout_gravity="center"
             android:layout_marginTop="15dp"
-
             android:background="@color/gray"
             style="?android:attr/progressBarStyleHorizontal"/>
-
-
 
         <TextView
             android:id="@+id/progressBarText"
@@ -97,10 +87,7 @@
         <ImageView
             android:id="@+id/image01"
             style="@style/imageStyle"
-            app:srcCompat="@android:color/holo_blue_bright"
-
-            />
-
+            app:srcCompat="@android:color/holo_blue_bright" />
         <ImageView
             android:id="@+id/image02"
             style="@style/imageStyle"
@@ -118,8 +105,6 @@
 
     <LinearLayout
         android:id="@+id/row02"
-
-
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginTop="10dp"
@@ -142,14 +127,10 @@
             android:id="@+id/image08"
             style="@style/imageStyle"
             app:srcCompat="@android:color/holo_blue_bright"/>
-
-
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/row03"
-
-
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginTop="10dp"
@@ -172,13 +153,10 @@
             android:id="@+id/image12"
             style="@style/imageStyle"
             app:srcCompat="@android:color/holo_blue_bright"/>
-
-
     </LinearLayout>
+
     <LinearLayout
         android:id="@+id/row04"
-
-
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginTop="10dp"
@@ -201,13 +179,10 @@
             android:id="@+id/image16"
             style="@style/imageStyle"
             app:srcCompat="@android:color/holo_blue_bright"/>
-
-
     </LinearLayout>
+
     <LinearLayout
         android:id="@+id/row05"
-
-
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginTop="10dp"
@@ -230,17 +205,13 @@
             android:id="@+id/image20"
             style="@style/imageStyle"
             app:srcCompat="@android:color/holo_blue_bright"/>
-
-
     </LinearLayout>
 
 <LinearLayout  android:layout_width="match_parent"
     android:layout_height="0dp"
     android:orientation="vertical"
     app:layout_constraintBottom_toBottomOf="parent"
-
-    app:layout_constraintTop_toBottomOf="@+id/row05"
-    >
+    app:layout_constraintTop_toBottomOf="@+id/row05" >
     <ImageView
         android:id="@+id/logoImage"
         android:layout_width="match_parent"
