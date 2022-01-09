@@ -317,14 +317,14 @@ public class GamePlayActivity extends AppCompatActivity
         String secondCardTag = (String) secondCard.getTag();
         if (firstCardTag.equals(secondCardTag)) {
             playSFX("match_found");
-            firstCard.setVisibility(View.INVISIBLE);
-            secondCard.setVisibility(View.INVISIBLE);
+            firstCard.setVisibility(View.VISIBLE);
+            secondCard.setVisibility(View.VISIBLE);
             playerPoints++;
             tv_p1.setText(playerPoints + " of 6 matches");
         } else {
             playSFX("match_not_found");
-            firstCard.setImageResource(R.drawable.ic_back);
-            secondCard.setImageResource(R.drawable.ic_back);
+            firstCard.setImageResource(R.drawable.ic_gray);
+            secondCard.setImageResource(R.drawable.ic_gray);
         }
         cardNumber = 0;
         iv_11.setEnabled(true);

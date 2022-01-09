@@ -9,8 +9,8 @@
     <color name="white">#FFFFFFFF</color>
     <color name="red">#FF0000</color>
     <color name="darkRed">#741D1D</color>
-    <color name="gray">#C4C4C4</color>
+    <color name="gray">#2DC4C4C4</color>
     <color name="light_dark">#656464</color>
-    <color name="springGreen">#00FF7F</color>
-    <color name="ic_launcher_logo_background">#000000</color>
+    <color name="springGreen">#75CF61</color>
+    <!--<color name="ic_launcher_logo_background">#000000</color>-->
 </resources>

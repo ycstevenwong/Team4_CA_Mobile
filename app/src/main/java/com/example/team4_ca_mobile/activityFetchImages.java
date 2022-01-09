@@ -60,7 +60,6 @@ public class activityFetchImages extends AppCompatActivity {
 
         // start the process
         initUIComponents();
-
     }
 
     private void initUIComponents() {
@@ -185,7 +184,6 @@ public class activityFetchImages extends AppCompatActivity {
                 fetchImagesThread.start();
             }
         });
-
     }
 
     private boolean downloadImages(String url, File destFile) {
@@ -204,6 +202,7 @@ public class activityFetchImages extends AppCompatActivity {
 
             out.close();
             in.close();
+
             return true;
         } catch (Exception e) {
             return false;

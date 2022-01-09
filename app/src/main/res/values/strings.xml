@@ -16,7 +16,7 @@
     <string name="mainMenuRulesTitle">HOW TO PLAY?</string>
     <string name="mainMenuRules">
         Give us a cool URL with images \n . \n
-        We will download 20 images \n . \n
+        Click the Fetch button \n . \n
         Select 6 images you love! \n . \n
         A match board will be created \n . \n
         Match all 6 image pairs in the fastest time possible \n \n
@@ -26,4 +26,6 @@
     <string name="startGame">Start Game</string>
     <string name="leaderBoard">Leaderboard</string>
     <string name="back">Back</string>
+    <string name="letsPlay">Game Time!</string>
+    <string name="letsPlayTxt">Time is running fast...</string>
 </resources>

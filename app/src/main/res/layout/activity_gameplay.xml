@@ -6,6 +6,27 @@
     android:layout_height="match_parent"
     tools:context=".GamePlayActivity">
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:text="@string/letsPlay"
+        android:fontFamily="@font/druk_wide_bold"
+        android:textAllCaps="true"
+        android:textSize="20sp"
+        android:textColor="@color/black"
+        android:textAlignment="center"
+        android:background="@color/gray"
+        android:gravity="center"
+        android:layout_marginTop="0dp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="120dp"
+        android:drawableLeft="@drawable/login_character"
+        android:scaleX="-1"
+        android:scaleY="1"/>
+
     <include
         layout="@layout/images"
         android:layout_width="wrap_content"
@@ -20,8 +41,13 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:textSize="32sp"
-        android:textColor="#000000"
+        android:layout_marginTop="80dp"
+        android:layout_marginLeft="20dp"
+        android:textSize="16sp"
+        android:textColor="@color/black"
+        android:background="@color/gray"
+        android:textAllCaps="true"
+        android:fontFamily="@font/monument_extended"
         android:text="0 of 6 matches" />
 
     <Chronometer
@@ -31,7 +57,11 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
-        android:textColor="#000000"
-        android:textSize="32sp" />
+        android:layout_marginTop="80dp"
+        android:layout_marginRight="20dp"
+        android:textColor="@color/black"
+        android:background="@color/gray"
+        android:fontFamily="@font/monument_extended"
+        android:textSize="16sp" />
 
 </RelativeLayout>

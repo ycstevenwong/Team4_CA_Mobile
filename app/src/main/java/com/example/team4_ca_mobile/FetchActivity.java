@@ -106,7 +106,7 @@ public class FetchActivity extends AppCompatActivity implements View.OnClickList
 
                 String imgSrc = oneImage.attr("src");
 
-                if (imgSrc.contains(".jpg") == true || imgSrc.contains(".jpeg") == true) {
+                if (imgSrc.contains(".jpg") || imgSrc.contains(".jpeg")) {
                     for(int i = 0; i < 20; i++) {
                 fetchedURLs.add(imgSrc);
                 System.out.println(imgSrc); }}
