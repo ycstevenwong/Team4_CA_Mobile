@@ -9,11 +9,9 @@
 
     <ImageView
         android:id="@+id/imageView2"
-
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:scaleType="fitXY"
-        android:src="@drawable/congratulation_screen_background" />
+        android:src="@drawable/app_image" />
 
 
     <ImageView
@@ -29,17 +27,21 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
-        android:text="Score:__"
+        android:fontFamily="@font/monument_extended"
+        android:textAllCaps="true"
+        android:text="Final Time:__"
         android:textColor="@color/white"
-        android:textSize="30dp" />
+        android:textSize="25sp" />
 
     <Button
         android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="208dp"
-        android:text="Home"
-        android:backgroundTint="#248C4E"
+        android:text="@string/backToHome"
+        android:fontFamily="@font/monument_extended"
+        android:textSize="16sp"
+        android:backgroundTint="@color/white"
         android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="@id/score"
         app:layout_constraintEnd_toEndOf="parent"

@@ -28,4 +28,5 @@
     <string name="back">Back</string>
     <string name="letsPlay">Game Time!</string>
     <string name="letsPlayTxt">Time is running fast...</string>
+    <string name="backToHome">Back To Home</string>
 </resources>

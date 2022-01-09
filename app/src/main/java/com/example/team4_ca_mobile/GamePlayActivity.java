@@ -354,7 +354,7 @@ public class GamePlayActivity extends AppCompatActivity
                 @Override
                 public void onAnimationEnd(Animator animation) {
                     super.onAnimationEnd(animation);
-                    firstCard.setImageResource(R.drawable.ic_back);
+                    firstCard.setImageResource(R.drawable.ic_gray);
                     oa2.start();
                 }
             });
