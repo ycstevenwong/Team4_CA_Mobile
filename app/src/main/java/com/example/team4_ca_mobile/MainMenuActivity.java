@@ -127,11 +127,9 @@ public class MainMenuActivity extends AppCompatActivity implements View.OnClickL
     }
 
     protected void startBGMPlayer(int bgmPos) {
-        SFX bgm = new SFX("dramatic_intro_music");
         if (bgmplayer == null) {
             // play BGM
-            int resId = getResources().getIdentifier(bgm.getFname(), "raw", getPackageName());
-            bgmplayer = MediaPlayer.create(this, resId);
+            bgmplayer = MediaPlayer.create(this, R.raw.dramatic_intro_music);
             bgmplayer.seekTo(bgmPos);
             bgmplayer.start();
             bgmplayer.setLooping(true);

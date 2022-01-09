@@ -47,14 +47,11 @@ public class GamePlayActivity extends AppCompatActivity
 
     private MediaPlayer sfxplayer = null;
     private MediaPlayer bgmplayer = null;
-    private final ArrayList<SFX> sfxs = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gameplay);
-
-        initSFXList();
 
         tv_p1 = findViewById(R.id.tv_p1);
 
@@ -455,19 +452,11 @@ public class GamePlayActivity extends AppCompatActivity
         return i;
     }
 
-    protected void initSFXList() {
-        sfxs.add(new SFX("bonk_sound_effect"));
-        sfxs.add(new SFX("success_sound_effect"));
-        sfxs.add(new SFX("win_sound_effect"));
-        sfxs.add(new SFX("background_music"));
-    }
-
     protected void startBGMPlayer() {
 
         if (bgmplayer == null) {
             // play BGM
-            int resId = getResources().getIdentifier(sfxs.get(3).getFname(), "raw", getPackageName());
-            bgmplayer = MediaPlayer.create(this, resId);
+            bgmplayer = MediaPlayer.create(this, R.raw.background_music);
             bgmplayer.start();
             bgmplayer.setLooping(true);
         }
@@ -485,17 +474,15 @@ public class GamePlayActivity extends AppCompatActivity
 
         switch (gameState) {
             case "match_not_found":
-                resId = getResources().getIdentifier(sfxs.get(0).getFname(), "raw", getPackageName());
+                sfxplayer = MediaPlayer.create(this, R.raw.bonk_sound_effect);
                 break;
             case "match_found":
-                resId = getResources().getIdentifier(sfxs.get(1).getFname(), "raw", getPackageName());
+                sfxplayer = MediaPlayer.create(this, R.raw.success_sound_effect);
                 break;
             case "game_win":
-                resId = getResources().getIdentifier(sfxs.get(2).getFname(), "raw", getPackageName());
+                sfxplayer = MediaPlayer.create(this, R.raw.win_sound_effect);
                 break;
         }
-        // create player to play sfx
-        sfxplayer = MediaPlayer.create(this, resId);
         sfxplayer.start();
     }
 

@@ -66,14 +66,12 @@ public class SplashScreen extends AppCompatActivity {
     }
 
     protected void playSFX() {
-        SFX startupSFX = new SFX("shiny_sound_effect");
         if (sfxplayer != null) {
             resetSFXPlayer();
         }
-        int resId = getResources().getIdentifier(startupSFX.getFname(), "raw", getPackageName());
 
         // create player to play sfx
-        sfxplayer = MediaPlayer.create(this, resId);
+        sfxplayer = MediaPlayer.create(this, R.raw.shiny_sound_effect);
         sfxplayer.start();
         }
 
