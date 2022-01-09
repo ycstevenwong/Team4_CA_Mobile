@@ -8,7 +8,9 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.animation.Animation;
 import android.widget.Button;
@@ -19,10 +21,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button button;
     private SharedPreferences currUser;
     private Intent intent;
+
+    // SFX variables
+    private MediaPlayer bgmplayer = null;
+    int bgmPos = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        startBGMPlayer(bgmPos);
+
         currUser = getSharedPreferences("currUser",MODE_PRIVATE);
 
         if(currUser.contains("username")){
@@ -32,6 +42,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
         loginOrSignUpBtn();
         blinking();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        interruptBGMPlayer("pause");
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        startBGMPlayer(bgmPos);
     }
 
     protected void loginOrSignUpBtn(){
@@ -48,10 +70,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         int id = v.getId();
         if(id == R.id.loginButton){
             Intent intent = new Intent(this,login.class);
+            intent.putExtra("bgmPos", bgmplayer.getCurrentPosition());
+            interruptBGMPlayer("stop");
             startActivity(intent);
         }
         if(id == R.id.signUpButton){
             Intent intent = new Intent(this,sign_up.class);
+            intent.putExtra("bgmPos", bgmplayer.getCurrentPosition());
+            interruptBGMPlayer(("stop"));
             startActivity(intent);
         }
     }
@@ -65,5 +91,35 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         animator.setRepeatMode(Animation.REVERSE);
         animator.setRepeatCount(Animation.INFINITE);
         animator.start();
+    }
+
+    protected void startBGMPlayer(int bgmPos) {
+        SFX bgm = new SFX("dramatic_intro_music");
+        if (bgmplayer == null) {
+            // play BGM
+            int resId = getResources().getIdentifier(bgm.getFname(), "raw", getPackageName());
+            bgmplayer = MediaPlayer.create(this, resId);
+            bgmplayer.seekTo(bgmPos);
+            bgmplayer.start();
+            bgmplayer.setLooping(true);
+        }
+        else {
+            bgmplayer.start();
+        }
+    }
+
+    protected int interruptBGMPlayer(String prompt) {
+        if (bgmplayer != null) {
+            if (prompt.equalsIgnoreCase("pause")) {
+                bgmplayer.pause();
+                bgmPos = bgmplayer.getCurrentPosition();
+            }
+            else {
+                bgmplayer.stop();
+                bgmplayer.release();
+                bgmplayer = null;
+            }
+        }
+        return bgmPos;
     }
 }

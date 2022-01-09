@@ -23,8 +23,6 @@ public class SplashScreen extends AppCompatActivity {
 
     // SFX variables
     private MediaPlayer sfxplayer = null;
-    private SFX startupSFX;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +34,7 @@ public class SplashScreen extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.splash_screen);
+        playSFX();
 
         logoAnimation = AnimationUtils.loadAnimation(this, R.anim.logo_animation);
         nameAnimation = AnimationUtils.loadAnimation(this, R.anim.name_animation);
@@ -56,9 +55,6 @@ public class SplashScreen extends AppCompatActivity {
 
         devName.setAnimation(bottomTextAnimation);
 
-        startupSFX = new SFX("shiny_sound_effect");
-        playSFX();
-
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -70,6 +66,7 @@ public class SplashScreen extends AppCompatActivity {
     }
 
     protected void playSFX() {
+        SFX startupSFX = new SFX("shiny_sound_effect");
         if (sfxplayer != null) {
             resetSFXPlayer();
         }

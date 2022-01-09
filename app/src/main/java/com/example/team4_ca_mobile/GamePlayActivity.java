@@ -312,9 +312,9 @@ public class GamePlayActivity extends AppCompatActivity
         String firstCardTag = (String) firstCard.getTag();
         String secondCardTag = (String) secondCard.getTag();
         if (firstCardTag.equals(secondCardTag)) {
+            playSFX("match_found");
             firstCard.setVisibility(View.INVISIBLE);
             secondCard.setVisibility(View.INVISIBLE);
-            playSFX("match_found");
             playerPoints++;
             tv_p1.setText(playerPoints + " of 6 matches");
         } else {
