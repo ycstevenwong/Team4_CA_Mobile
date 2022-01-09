@@ -9,6 +9,7 @@ import android.content.ContextWrapper;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.media.Image;
 import android.os.Bundle;
 import android.os.Environment;
 import android.view.View;
@@ -52,13 +53,13 @@ public class FetchActivity extends AppCompatActivity implements View.OnClickList
         fetchBtn = findViewById(R.id.fetchBtn);
         fetchBtn.setOnClickListener(this);
 
-        ArrayList<Image> images = new ArrayList<>();
+        ArrayList<Image> images = new ArrayList<Image>();
 
         this.images = (RecyclerView) findViewById(R.id.allImages);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(this);
         this.images.setLayoutManager(mLayoutManager);
 
-        adapter = new ImageAdapter(images);
+     //   adapter = new ImageAdapter(images);
         this.images.setAdapter(adapter);
     }
 
@@ -70,12 +71,12 @@ public class FetchActivity extends AppCompatActivity implements View.OnClickList
         String imgURL = addImageURL(userURL);
 
         ArrayList<Image> list = new ArrayList<>();
-        list.add(new Image("https://bit.ly/CBImageCinque"));
-        list.add(new Image("https://bit.ly/CBImageParis"));
-        list.add(new Image("https://bit.ly/CBImageRio"));
-        for(int i = 20; i <20; i++) {
-            list.add(new Image(imgURL));
-        }
+     //   list.add(new Image("https://bit.ly/CBImageCinque"));
+     //   list.add(new Image("https://bit.ly/CBImageParis"));
+      //  list.add(new Image("https://bit.ly/CBImageRio"));
+      //  for(int i = 20; i <20; i++) {
+       //     list.add(new Image(imgURL));
+       // }
 
       //  }
 
@@ -156,7 +157,7 @@ public class FetchActivity extends AppCompatActivity implements View.OnClickList
             RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(this);
             this.images.setLayoutManager(mLayoutManager);
 
-            adapter = new ImageAdapter(images);
+           // adapter = new ImageAdapter(images);
             this.images.setAdapter(adapter);
         }
     }
