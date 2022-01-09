@@ -19,6 +19,7 @@ import java.util.stream.Collectors;
 
 public class LeaderboardActivity extends AppCompatActivity implements AdapterView.OnItemClickListener,View.OnClickListener {
     SharedPreferences lbPref;
+    SharedPreferences currUser;
     Button back;
     List<Leaderboard> leaderboardList;
     List<Leaderboard> topTen;
@@ -30,7 +31,7 @@ public class LeaderboardActivity extends AppCompatActivity implements AdapterVie
         setContentView(R.layout.activity_leaderboard);
         lbPref = getSharedPreferences("leaderboard",MODE_PRIVATE);
         SharedPreferences.Editor editor = lbPref.edit();
-
+        currUser = getSharedPreferences("currUser",MODE_PRIVATE);
         leaderboardList = new ArrayList<>();
         for(int i = 0; i < getNextLargestNum(); i++){
             String username = lbPref.getString("user"+i,null);
@@ -65,6 +66,8 @@ public class LeaderboardActivity extends AppCompatActivity implements AdapterVie
         int id = v.getId();
         if(id == R.id.back){
             Intent intent = new Intent(this,MainMenuActivity.class);
+            String username = currUser.getString("username",null);
+            intent.putExtra("username",username);
             startActivity(intent);
         }
     }
