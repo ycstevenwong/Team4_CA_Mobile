@@ -9,6 +9,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.SystemClock;
@@ -34,10 +35,16 @@ public class GamePlayActivity extends AppCompatActivity
     private int playerPoints = 0;
     private Chronometer chronometer;
     private int clickTime = 0;
+
+    private MediaPlayer player = null;
+    private final ArrayList<SFX> sfxs = new ArrayList<>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gameplay);
+
+        initSFXList();
 
         tv_p1 = findViewById(R.id.tv_p1);
 
@@ -292,9 +299,11 @@ public class GamePlayActivity extends AppCompatActivity
         if (firstCardTag.equals(secondCardTag)) {
             firstCard.setVisibility(View.INVISIBLE);
             secondCard.setVisibility(View.INVISIBLE);
+            playSFX("match_found");
             playerPoints++;
             tv_p1.setText(playerPoints + " of 6 matches");
         } else {
+            playSFX("match_not_found");
             firstCard.setImageResource(R.drawable.ic_back);
             secondCard.setImageResource(R.drawable.ic_back);
         }
@@ -337,6 +346,7 @@ public class GamePlayActivity extends AppCompatActivity
                     });
             AlertDialog alertDialog = alertDialogBuilder.create();
             alertDialog.show();
+            playSFX("game_win");
         }
     }
     @Override
@@ -344,6 +354,43 @@ public class GamePlayActivity extends AppCompatActivity
         String time = chronometer.getText().toString();
         if (time.equals("00:00")) {
             Toast.makeText(this, "Time starts!", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    protected void initSFXList() {
+        sfxs.add(new SFX("bonk_sound_effect"));
+        sfxs.add(new SFX("success_sound_effect"));
+        sfxs.add(new SFX("win_sound_effect"));
+    }
+
+    protected void playSFX(String gameState) {
+        int resId = -1;
+
+        if (player != null) {
+            resetSFXPlayer();
+        }
+
+        switch (gameState) {
+            case "match_not_found":
+                resId = getResources().getIdentifier(sfxs.get(0).getFname(), "raw", getPackageName());
+                break;
+            case "match_found":
+                resId = getResources().getIdentifier(sfxs.get(1).getFname(), "raw", getPackageName());
+                break;
+            case "game_win":
+                resId = getResources().getIdentifier(sfxs.get(2).getFname(), "raw", getPackageName());
+                break;
+        }
+        // create player to play sfx
+        player = MediaPlayer.create(this, resId);
+        player.start();
+    }
+
+    protected void resetSFXPlayer() {
+        if (player != null) {
+            player.stop();
+            player.release();
+            player = null;
         }
     }
 }
