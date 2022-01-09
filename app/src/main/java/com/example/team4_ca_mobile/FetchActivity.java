@@ -9,7 +9,6 @@ import android.content.ContextWrapper;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.media.Image;
 import android.os.Bundle;
 import android.os.Environment;
 import android.view.View;
@@ -53,84 +52,65 @@ public class FetchActivity extends AppCompatActivity implements View.OnClickList
         fetchBtn = findViewById(R.id.fetchBtn);
         fetchBtn.setOnClickListener(this);
 
-        ArrayList<Image> images = new ArrayList<Image>();
+        url = findViewById(R.id.userUrl);
+        url.setOnClickListener(this);
+
+        ArrayList<Image> images = initImages();
 
         this.images = (RecyclerView) findViewById(R.id.allImages);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(this);
         this.images.setLayoutManager(mLayoutManager);
 
-     //   adapter = new ImageAdapter(images);
+        adapter = new ImageAdapter(images);
         this.images.setAdapter(adapter);
     }
 
+
     private ArrayList<Image> initImages() {
 
-        url = findViewById(R.id.url);
+        //EditText url = findViewById(R.id.userUrl);
         String userURL = url.getText().toString();
 
-        String imgURL = addImageURL(userURL);
-
         ArrayList<Image> list = new ArrayList<>();
-     //   list.add(new Image("https://bit.ly/CBImageCinque"));
-     //   list.add(new Image("https://bit.ly/CBImageParis"));
-      //  list.add(new Image("https://bit.ly/CBImageRio"));
-      //  for(int i = 20; i <20; i++) {
-       //     list.add(new Image(imgURL));
-       // }
+        list.add(new Image("https://bit.ly/CBImageCinque"));
+        list.add(new Image("https://bit.ly/CBImageParis"));
+        list.add(new Image("https://bit.ly/CBImageRio"));
+        list.add(new Image("https://stocksnap.io/"));
 
-      //  }
+        ArrayList<String> imgURL = addImageURL(userURL);
+        for(String singleURL : imgURL) {
+            list.add(new Image(singleURL));
+        }
 
-        //new Thread(new Runnable() {
+        /*new Thread(new Runnable() {
         // @Override
         // public void run() { //don't call any UI components in run()
         //code here to download images or call the download method
         //   if(Thread.interrupted()) { //to be in the download method
         //       return; //stop download
         //    }
-              /*  url = findViewById(R.id.url);
-                String userURL = url.getText().toString();
-                if(userURL == null) {
-                    Toast.makeText(FetchActivity.this, "Hey, you left the URL blank!",
-                            Toast.LENGTH_SHORT).show();
-                }
-                try {
-                    Document doc = Jsoup.connect(userURL).get();
-                    Elements twentyImages = doc.select("img[src]");
-                    count = 0;
-                    for(Element oneImage: twentyImages) {
-                        String imgSrc = oneImage.attr("src");
-                        if(imgSrc.contains(".jpg") || imgSrc.contains(".jpeg")) {
-                           if(count < 20) {
-                                list.add(new Image(imgSrc));
-                               // File destFile = makeFileDestPath(imgSrc);
-
-                              //  if(downloadImages(imgSrc, destFile)) {
-                                 //           String path = destFile.getAbsolutePath();
-
-                                //        }
-                              }
-                            }
-                        }
-                    }
-                catch (Exception e) {
-                    System.out.println("Error");
-                }
-       //}
-  //      }).start(); */
+              url = findViewById(R.id.url);*/
 
         return list;
     }
 
-    private static String addImageURL(String userURL) {
+    private static ArrayList<String> addImageURL(String userURL) {
+
+        ArrayList<String> fetchedURLs = new ArrayList<>();
+
         try {
             Document doc = Jsoup.connect(userURL).get();
             Elements twentyImages = doc.select("img[src]");
 
             for (Element oneImage : twentyImages) {
-                String imgSrc = oneImage.attr("src");
-                System.out.println(imgSrc);
 
-                return imgSrc;
+                String imgSrc = oneImage.attr("src");
+
+                if (imgSrc.contains(".jpg") == true || imgSrc.contains(".jpeg") == true) {
+                    for(int i = 0; i < 20; i++) {
+                fetchedURLs.add(imgSrc);
+                System.out.println(imgSrc); }}
+
                 /*if (imgSrc.contains(".jpg") || imgSrc.contains(".jpeg")) {
                     for(int i = 0; i < 20; i++) {
                     list.add(new Image(imgSrc));
@@ -138,17 +118,20 @@ public class FetchActivity extends AppCompatActivity implements View.OnClickList
                   }
                } */
             }
+            return fetchedURLs;
         }
         catch (Exception e) {
             System.out.println("Error");
+            System.out.println(userURL);
         }
-        return null;
+        return fetchedURLs;
     }
+
     @Override
     public void onClick(View v) {
 
         int id = v.getId();
-        url = findViewById(R.id.url);
+        url = findViewById(R.id.userUrl);
 
         if (id == R.id.fetchBtn) {
 
@@ -157,8 +140,14 @@ public class FetchActivity extends AppCompatActivity implements View.OnClickList
             RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(this);
             this.images.setLayoutManager(mLayoutManager);
 
-           // adapter = new ImageAdapter(images);
+            adapter = new ImageAdapter(images);
             this.images.setAdapter(adapter);
+        }
+        else if (id == R.id.url) {
+            if(url.getText().toString().substring(0, 7).contains("https://") != true) {
+                Toast.makeText(FetchActivity.this, "Invalid URL", Toast.LENGTH_SHORT).show();
+
+            }
         }
     }
 

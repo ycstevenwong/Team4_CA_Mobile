@@ -2,6 +2,9 @@ package com.example.team4_ca_mobile;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.animation.ObjectAnimator;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.ContextWrapper;
@@ -15,6 +18,8 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.SystemClock;
 import android.view.View;
+import android.view.animation.AccelerateDecelerateInterpolator;
+import android.view.animation.DecelerateInterpolator;
 import android.widget.Chronometer;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -278,7 +283,22 @@ public class GamePlayActivity extends AppCompatActivity
         String fileName = (String)imageView.getTag();
         File mTargetFile = new File(directory, fileName);
         Bitmap bitmap = BitmapFactory.decodeFile(mTargetFile.getAbsolutePath());
-        imageView.setImageBitmap(bitmap);
+        //imageView.setImageBitmap(bitmap);
+
+        final ObjectAnimator oa1 = ObjectAnimator.ofFloat(imageView, "scaleX", 1f, 0f);
+        final ObjectAnimator oa2 = ObjectAnimator.ofFloat(imageView, "scaleX", 0f, 1f);
+
+        oa1.setInterpolator(new DecelerateInterpolator());
+        oa2.setInterpolator(new AccelerateDecelerateInterpolator());
+        oa1.addListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                super.onAnimationEnd(animation);
+                imageView.setImageBitmap(bitmap);
+                oa2.start();
+            }
+        });
+        oa1.start();
 
         clickTime++;
         if(clickTime == 1){
@@ -323,22 +343,59 @@ public class GamePlayActivity extends AppCompatActivity
             tv_p1.setText(playerPoints + " of 6 matches");
         } else {
             playSFX("match_not_found");
-            firstCard.setImageResource(R.drawable.ic_back);
-            secondCard.setImageResource(R.drawable.ic_back);
+            final ObjectAnimator oa1 = ObjectAnimator.ofFloat(firstCard, "scaleX", 1f, 0f);
+            final ObjectAnimator oa2 = ObjectAnimator.ofFloat(firstCard, "scaleX", 0f, 1f);
+            final ObjectAnimator oa3 = ObjectAnimator.ofFloat(secondCard, "scaleX", 1f, 0f);
+            final ObjectAnimator oa4 = ObjectAnimator.ofFloat(secondCard, "scaleX", 0f, 1f);
+
+            oa1.setInterpolator(new DecelerateInterpolator());
+            oa2.setInterpolator(new AccelerateDecelerateInterpolator());
+            oa3.setInterpolator(new DecelerateInterpolator());
+            oa4.setInterpolator(new AccelerateDecelerateInterpolator());
+
+            oa1.addListener(new AnimatorListenerAdapter() {
+                @Override
+                public void onAnimationEnd(Animator animation) {
+                    super.onAnimationEnd(animation);
+                    firstCard.setImageResource(R.drawable.ic_back);
+                    oa2.start();
+                }
+            });
+            oa1.start();
+
+
+
+            oa3.addListener(new AnimatorListenerAdapter() {
+                @Override
+                public void onAnimationEnd(Animator animation) {
+                    super.onAnimationEnd(animation);
+                    secondCard.setImageResource(R.drawable.ic_back);
+                    oa4.start();
+                }
+            });
+            oa3.start();
+            //firstCard.setImageResource(R.drawable.ic_back);
+           // secondCard.setImageResource(R.drawable.ic_back);
         }
-        cardNumber = 0;
-        iv_11.setEnabled(true);
-        iv_12.setEnabled(true);
-        iv_13.setEnabled(true);
-        iv_14.setEnabled(true);
-        iv_21.setEnabled(true);
-        iv_22.setEnabled(true);
-        iv_23.setEnabled(true);
-        iv_24.setEnabled(true);
-        iv_31.setEnabled(true);
-        iv_32.setEnabled(true);
-        iv_33.setEnabled(true);
-        iv_34.setEnabled(true);
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                cardNumber = 0;
+                iv_11.setEnabled(true);
+                iv_12.setEnabled(true);
+                iv_13.setEnabled(true);
+                iv_14.setEnabled(true);
+                iv_21.setEnabled(true);
+                iv_22.setEnabled(true);
+                iv_23.setEnabled(true);
+                iv_24.setEnabled(true);
+                iv_31.setEnabled(true);
+                iv_32.setEnabled(true);
+                iv_33.setEnabled(true);
+                iv_34.setEnabled(true);
+            }
+        }, 1000);
     }
 
     private void checkEnd() {
