@@ -11,16 +11,19 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.SystemClock;
 import android.view.View;
+import android.widget.Chronometer;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Collections;
 
 public class GamePlayActivity extends AppCompatActivity
-    implements View.OnClickListener {
+    implements View.OnClickListener, Chronometer.OnChronometerTickListener {
 
     TextView tv_p1;
     ImageView iv_11, iv_12, iv_13, iv_14, iv_21, iv_22, iv_23, iv_24, iv_31, iv_32, iv_33, iv_34;
@@ -29,7 +32,8 @@ public class GamePlayActivity extends AppCompatActivity
     private int cardNumber = 0;
     ImageView firstCard, secondCard;
     private int playerPoints = 0;
-
+    private Chronometer chronometer;
+    private int clickTime = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -249,6 +253,17 @@ public class GamePlayActivity extends AppCompatActivity
         File mTargetFile = new File(directory, fileName);
         Bitmap bitmap = BitmapFactory.decodeFile(mTargetFile.getAbsolutePath());
         imageView.setImageBitmap(bitmap);
+
+        clickTime++;
+        if(clickTime == 1){
+            chronometer = (Chronometer) findViewById(R.id.chronometer);
+            chronometer.setOnChronometerTickListener(this);
+            // reset time
+            chronometer.setBase(SystemClock.elapsedRealtime());
+            // start time
+            chronometer.start();
+        }
+
         if (cardNumber == 0) {
             cardNumber = 1;
             firstCard = imageView;
@@ -315,11 +330,20 @@ public class GamePlayActivity extends AppCompatActivity
                     .setNegativeButton("EXIT", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
+                            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                            startActivity(intent);
                             finish();
                         }
                     });
             AlertDialog alertDialog = alertDialogBuilder.create();
             alertDialog.show();
+        }
+    }
+    @Override
+    public void onChronometerTick(Chronometer chronometer) {
+        String time = chronometer.getText().toString();
+        if (time.equals("00:00")) {
+            Toast.makeText(this, "Time starts!", Toast.LENGTH_SHORT).show();
         }
     }
 }
