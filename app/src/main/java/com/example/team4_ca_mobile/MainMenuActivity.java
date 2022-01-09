@@ -4,7 +4,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -16,6 +18,10 @@ public class MainMenuActivity extends AppCompatActivity implements View.OnClickL
     TextView username;
     SharedPreferences currUser;
 
+    // SFX variables
+    private MediaPlayer bgmplayer = null;
+    private int bgmPos = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,6 +31,9 @@ public class MainMenuActivity extends AppCompatActivity implements View.OnClickL
 
         username = findViewById(R.id.main_menuTxtView);
         Intent intent = getIntent();
+        bgmPos = intent.getIntExtra("bgmPos", 0);
+        startBGMPlayer(bgmPos);
+
         String user = intent.getStringExtra("username");
         username.setText(user);
 
@@ -70,6 +79,31 @@ public class MainMenuActivity extends AppCompatActivity implements View.OnClickL
         }
     }
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+        interruptBGMPlayer("pause");
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        startBGMPlayer(bgmPos);
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if ((keyCode == KeyEvent.KEYCODE_BACK)) {
+            Intent intent = new Intent(this, login.class);
+            intent.putExtra("bgmPos", bgmplayer.getCurrentPosition());
+            interruptBGMPlayer("stop");
+            startActivity(intent);
+            return true;
+        }
+        // if key != back key, bubble up to default system behaviour
+        return super.onKeyDown(keyCode, event);
+    }
+
     private void startCongratulationScreen() {
         Intent intent = new Intent(this, CongratulationScreen.class);
         startActivity(intent);
@@ -80,7 +114,6 @@ public class MainMenuActivity extends AppCompatActivity implements View.OnClickL
         startActivity(intent);
     }
 
-
     public void startGamev2() {
         Intent intent = new Intent(this, activityFetchImages.class);
         startActivity(intent);
@@ -88,6 +121,37 @@ public class MainMenuActivity extends AppCompatActivity implements View.OnClickL
     public void startLeaderboard(){
         Intent intent = new Intent(this, LeaderboardActivity.class);
         startActivity(intent);
+    }
+
+    protected void startBGMPlayer(int bgmPos) {
+        SFX bgm = new SFX("dramatic_intro_music");
+        if (bgmplayer == null) {
+            // play BGM
+            int resId = getResources().getIdentifier(bgm.getFname(), "raw", getPackageName());
+            bgmplayer = MediaPlayer.create(this, resId);
+            bgmplayer.seekTo(bgmPos);
+            bgmplayer.start();
+            bgmplayer.setLooping(true);
+        }
+        else {
+            bgmplayer.start();
+        }
+    }
+
+    protected int interruptBGMPlayer(String prompt) {
+        if (bgmplayer != null) {
+            if (prompt.equalsIgnoreCase("pause")) {
+                bgmplayer.pause();
+                bgmPos = bgmplayer.getCurrentPosition();
+            }
+            else {
+                bgmplayer.stop();
+                bgmplayer.release();
+                bgmplayer = null;
+                bgmPos = 0;
+            }
+        }
+        return bgmPos;
     }
 }
 

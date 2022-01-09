@@ -24,7 +24,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     // SFX variables
     private MediaPlayer bgmplayer = null;
-    int bgmPos = 0;
+    private int bgmPos = 0;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -118,6 +119,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 bgmplayer.stop();
                 bgmplayer.release();
                 bgmplayer = null;
+                bgmPos = 0;
             }
         }
         return bgmPos;

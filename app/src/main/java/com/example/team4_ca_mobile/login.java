@@ -23,22 +23,23 @@ public class login extends AppCompatActivity implements View.OnClickListener {
 
     // SFX variables
     private MediaPlayer bgmplayer = null;
-    int bgmPos;
+    private int bgmPos;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        Intent result = getIntent();
+        bgmPos = result.getIntExtra("bgmPos", 0);
+        startBGMPlayer(bgmPos);
+
         currUser = getSharedPreferences("currUser",MODE_PRIVATE);
         userList = getSharedPreferences("userList",MODE_PRIVATE);
         username = findViewById(R.id.loginUsernameEditText);
         password = findViewById(R.id.loginPasswordEditText);
         login = findViewById(R.id.loginBtn);
         login.setOnClickListener(this);
-
-        Intent result = getIntent();
-        bgmPos = result.getIntExtra("bgmPos", 0);
-        startBGMPlayer(bgmPos);
 
     }
 
@@ -63,11 +64,24 @@ public class login extends AppCompatActivity implements View.OnClickListener {
                 editor.putString("username",currUsername);
                 Intent intent = new Intent(this, MainMenuActivity.class);
                 intent.putExtra("username",currUsername);
+                intent.putExtra("bgmPos", bgmplayer.getCurrentPosition());
                 startActivity(intent);
             }else{
                 Toast.makeText(this, "Username or password incorrect", Toast.LENGTH_SHORT).show();
             }
         }
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        interruptBGMPlayer("pause");
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        startBGMPlayer(bgmPos);
     }
 
     @Override
@@ -79,7 +93,7 @@ public class login extends AppCompatActivity implements View.OnClickListener {
             startActivity(intent);
             return true;
         }
-        // if key != back key or if there's no web history, bubble up to default system behaviour
+        // if key != back key, bubble up to default system behaviour
         return super.onKeyDown(keyCode, event);
     }
 
@@ -116,6 +130,7 @@ public class login extends AppCompatActivity implements View.OnClickListener {
                 bgmplayer.stop();
                 bgmplayer.release();
                 bgmplayer = null;
+                bgmPos = 0;
             }
         }
         return bgmPos;
