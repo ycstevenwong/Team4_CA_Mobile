@@ -7,7 +7,6 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 
@@ -22,7 +21,6 @@ public class LeaderboardActivity extends AppCompatActivity implements AdapterVie
     SharedPreferences currUser;
     Button back;
     List<Leaderboard> leaderboardList;
-    List<Leaderboard> topTen;
     ListView listView;
     int i = 0;
     @Override
@@ -30,7 +28,6 @@ public class LeaderboardActivity extends AppCompatActivity implements AdapterVie
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_leaderboard);
         lbPref = getSharedPreferences("leaderboard",MODE_PRIVATE);
-        SharedPreferences.Editor editor = lbPref.edit();
         currUser = getSharedPreferences("currUser",MODE_PRIVATE);
         leaderboardList = new ArrayList<>();
         for(int i = 0; i < getNextLargestNum(); i++){
@@ -78,7 +75,6 @@ public class LeaderboardActivity extends AppCompatActivity implements AdapterVie
         return i;
     }
     private void sortTheList(List<Leaderboard> list){
-        int pos = 0;
         if(list.size()==1){
             System.out.println("Only one inside");
         }else if(list.size()>1){
