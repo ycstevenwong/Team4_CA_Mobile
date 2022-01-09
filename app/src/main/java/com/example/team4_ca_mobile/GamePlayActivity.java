@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.ContextWrapper;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -34,6 +35,9 @@ public class GamePlayActivity extends AppCompatActivity
     private int playerPoints = 0;
     private Chronometer chronometer;
     private int clickTime = 0;
+    SharedPreferences lbPref;
+    SharedPreferences currUser;
+    int i = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -315,6 +319,20 @@ public class GamePlayActivity extends AppCompatActivity
 
     private void checkEnd() {
         if (playerPoints == 6) {
+            chronometer.stop();
+
+            int min = Integer.parseInt(chronometer.getText().toString().split(":")[0]);
+            int sec = Integer.parseInt(chronometer.getText().toString().split(":")[1]);
+            int totalTime  = min * 60 + sec;
+
+            lbPref = getSharedPreferences("leaderboard",MODE_PRIVATE);
+            currUser = getSharedPreferences("currUser",MODE_PRIVATE);
+            String username = currUser.getString("username",null);
+            SharedPreferences.Editor editor = lbPref.edit();
+            editor.putString("user"+getNextLargestNum(),username);
+            editor.putInt("userTime"+getNextLargestNum(),totalTime);
+            editor.commit();
+
             AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(GamePlayActivity.this);
             alertDialogBuilder
                     .setMessage("GAME OVER!")
@@ -345,5 +363,11 @@ public class GamePlayActivity extends AppCompatActivity
         if (time.equals("00:00")) {
             Toast.makeText(this, "Time starts!", Toast.LENGTH_SHORT).show();
         }
+    }
+    public int getNextLargestNum(){
+        while(lbPref.contains("user"+i)){
+            i++;
+        }
+        return i;
     }
 }

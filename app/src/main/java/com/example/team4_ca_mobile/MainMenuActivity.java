@@ -2,7 +2,6 @@ package com.example.team4_ca_mobile;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -12,7 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainMenuActivity extends AppCompatActivity implements View.OnClickListener {
-    Button logout;
+    Button logout,leaderboard;
     Button startGameBtn, startGameBtnv2, congratulationScreenBtn;
     TextView username;
     SharedPreferences currUser;
@@ -31,6 +30,9 @@ public class MainMenuActivity extends AppCompatActivity implements View.OnClickL
 
         logout = findViewById(R.id.logoutBtn);
         logout.setOnClickListener(this);
+
+        leaderboard = findViewById(R.id.leaderboardBtn);
+        leaderboard.setOnClickListener(this);
 
         startGameBtn = findViewById(R.id.startGameBtn);
         startGameBtn.setOnClickListener(this);
@@ -63,6 +65,8 @@ public class MainMenuActivity extends AppCompatActivity implements View.OnClickL
 
         else if(id == R.id.congratulationScreen) {
             startCongratulationScreen();
+        }else if(id == R.id.leaderboardBtn){
+            startLeaderboard();
         }
     }
 
@@ -81,7 +85,10 @@ public class MainMenuActivity extends AppCompatActivity implements View.OnClickL
         Intent intent = new Intent(this, activityFetchImages.class);
         startActivity(intent);
     }
-
+    public void startLeaderboard(){
+        Intent intent = new Intent(this, LeaderboardActivity.class);
+        startActivity(intent);
+    }
 }
 
 
