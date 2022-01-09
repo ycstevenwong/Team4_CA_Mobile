@@ -3,6 +3,7 @@ package com.example.team4_ca_mobile;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
@@ -20,6 +21,8 @@ public class SplashScreen extends AppCompatActivity {
     TextView appName, devName;
     static int TIMEOUT = 5000;
 
+    // SFX variables
+    private MediaPlayer sfxplayer = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +34,7 @@ public class SplashScreen extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.splash_screen);
+        playSFX();
 
         logoAnimation = AnimationUtils.loadAnimation(this, R.anim.logo_animation);
         nameAnimation = AnimationUtils.loadAnimation(this, R.anim.name_animation);
@@ -57,8 +61,27 @@ public class SplashScreen extends AppCompatActivity {
                 Intent intent = new Intent(SplashScreen.this, MainActivity.class);
                 startActivity(intent);
                 finish();
-
             }
         }, TIMEOUT);
+    }
+
+    protected void playSFX() {
+        SFX startupSFX = new SFX("shiny_sound_effect");
+        if (sfxplayer != null) {
+            resetSFXPlayer();
+        }
+        int resId = getResources().getIdentifier(startupSFX.getFname(), "raw", getPackageName());
+
+        // create player to play sfx
+        sfxplayer = MediaPlayer.create(this, resId);
+        sfxplayer.start();
+        }
+
+    protected void resetSFXPlayer() {
+        if (sfxplayer != null) {
+            sfxplayer.stop();
+            sfxplayer.release();
+            sfxplayer = null;
+        }
     }
 }

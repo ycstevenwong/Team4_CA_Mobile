@@ -282,7 +282,7 @@ public class activityFetchImages extends AppCompatActivity {
                  filepath = saveToFile(bitmap);
             }
 
-            Intent i = new Intent(activityFetchImages.this, MainActivity.class);
+            Intent i = new Intent(activityFetchImages.this, GamePlayActivity.class);
             i.putExtra("img_path", filepath);
             System.out.println(filepath);
             startActivity(i);

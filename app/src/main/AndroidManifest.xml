@@ -14,6 +14,12 @@
         android:supportsRtl="true"
         android:theme="@style/FullScreen">
         <activity
+            android:name=".LeaderboardActivity"
+            android:exported="false" />
+        <activity
+            android:name=".CongratulationScreen"
+            android:exported="false" />
+        <activity
             android:name=".activityFetchImages"
             android:exported="false" />
         <!--
@@ -44,8 +50,8 @@
         </activity>
         <activity
             android:name=".FetchActivity"
-            android:exported="false"
-            android:parentActivityName=".MainMenuActivity"/>
+            android:exported="true"
+            android:parentActivityName=".MainMenuActivity" />
         <activity
             android:name=".GamePlayActivity"
             android:exported="false" />

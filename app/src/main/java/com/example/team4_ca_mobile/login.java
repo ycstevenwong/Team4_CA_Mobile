@@ -4,7 +4,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -18,6 +20,11 @@ public class login extends AppCompatActivity implements View.OnClickListener {
     SharedPreferences currUser;
     SharedPreferences userList;
     int i = 0;
+
+    // SFX variables
+    private MediaPlayer bgmplayer = null;
+    int bgmPos;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,6 +35,11 @@ public class login extends AppCompatActivity implements View.OnClickListener {
         password = findViewById(R.id.loginPasswordEditText);
         login = findViewById(R.id.loginBtn);
         login.setOnClickListener(this);
+
+        Intent result = getIntent();
+        bgmPos = result.getIntExtra("bgmPos", 0);
+        startBGMPlayer(bgmPos);
+
     }
 
     @Override
@@ -57,10 +69,55 @@ public class login extends AppCompatActivity implements View.OnClickListener {
             }
         }
     }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if ((keyCode == KeyEvent.KEYCODE_BACK)) {
+            Intent intent = new Intent(this, MainActivity.class);
+            intent.putExtra("bgmPos", bgmplayer.getCurrentPosition());
+            interruptBGMPlayer("stop");
+            startActivity(intent);
+            return true;
+        }
+        // if key != back key or if there's no web history, bubble up to default system behaviour
+        return super.onKeyDown(keyCode, event);
+    }
+
     public int getNextLargestNum(){
         while(userList.contains("signUpUsername"+i)){
             i++;
         }
         return i;
+    }
+
+    protected void startBGMPlayer(int bgmPos) {
+        SFX bgm = new SFX("dramatic_intro_music");
+        if (bgmplayer == null) {
+            // play BGM
+            int resId = getResources().getIdentifier(bgm.getFname(), "raw", getPackageName());
+            bgmplayer = MediaPlayer.create(this, resId);
+            bgmplayer.seekTo(bgmPos);
+            bgmplayer.start();
+            bgmplayer.setLooping(true);
+        }
+        else {
+            bgmplayer.seekTo(bgmPos);
+            bgmplayer.start();
+        }
+    }
+
+    protected int interruptBGMPlayer(String prompt) {
+        if (bgmplayer != null) {
+            if (prompt.equalsIgnoreCase("pause")) {
+                bgmplayer.pause();
+                bgmPos = bgmplayer.getCurrentPosition();
+            }
+            else {
+                bgmplayer.stop();
+                bgmplayer.release();
+                bgmplayer = null;
+            }
+        }
+        return bgmPos;
     }
 }
