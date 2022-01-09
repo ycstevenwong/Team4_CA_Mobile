@@ -36,7 +36,8 @@ public class GamePlayActivity extends AppCompatActivity
     private Chronometer chronometer;
     private int clickTime = 0;
 
-    private MediaPlayer player = null;
+    private MediaPlayer sfxplayer = null;
+    private MediaPlayer bgmplayer = null;
     private final ArrayList<SFX> sfxs = new ArrayList<>();
 
     @Override
@@ -76,6 +77,20 @@ public class GamePlayActivity extends AppCompatActivity
         cardsArray.add("6");
         Collections.shuffle(cardsArray);
         assignCards();
+
+        startBGMPlayer();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        interruptBGMPlayer("pause");
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        startBGMPlayer();
     }
 
     private void setupCards() {
@@ -325,6 +340,8 @@ public class GamePlayActivity extends AppCompatActivity
     private void checkEnd() {
         if (playerPoints == 6) {
             AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(GamePlayActivity.this);
+            interruptBGMPlayer("stop");
+
             alertDialogBuilder
                     .setMessage("GAME OVER!")
                     .setCancelable(false)
@@ -361,12 +378,27 @@ public class GamePlayActivity extends AppCompatActivity
         sfxs.add(new SFX("bonk_sound_effect"));
         sfxs.add(new SFX("success_sound_effect"));
         sfxs.add(new SFX("win_sound_effect"));
+        sfxs.add(new SFX("background_music"));
+    }
+
+    protected void startBGMPlayer() {
+
+        if (bgmplayer == null) {
+            // play BGM
+            int resId = getResources().getIdentifier(sfxs.get(3).getFname(), "raw", getPackageName());
+            bgmplayer = MediaPlayer.create(this, resId);
+            bgmplayer.start();
+            bgmplayer.setLooping(true);
+        }
+        else {
+            bgmplayer.start();
+        }
     }
 
     protected void playSFX(String gameState) {
         int resId = -1;
 
-        if (player != null) {
+        if (sfxplayer != null) {
             resetSFXPlayer();
         }
 
@@ -382,15 +414,28 @@ public class GamePlayActivity extends AppCompatActivity
                 break;
         }
         // create player to play sfx
-        player = MediaPlayer.create(this, resId);
-        player.start();
+        sfxplayer = MediaPlayer.create(this, resId);
+        sfxplayer.start();
     }
 
     protected void resetSFXPlayer() {
-        if (player != null) {
-            player.stop();
-            player.release();
-            player = null;
+        if (sfxplayer != null) {
+            sfxplayer.stop();
+            sfxplayer.release();
+            sfxplayer = null;
+        }
+    }
+
+    protected void interruptBGMPlayer(String prompt) {
+        if (bgmplayer != null) {
+            if (prompt.equalsIgnoreCase("pause")) {
+                bgmplayer.pause();
+            }
+            else {
+                bgmplayer.stop();
+                bgmplayer.release();
+                bgmplayer = null;
+            }
         }
     }
 }
