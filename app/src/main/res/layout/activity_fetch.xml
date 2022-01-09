@@ -21,7 +21,8 @@
         android:textStyle="bold"/>
 
     <EditText
-        android:id="@+id/url"
+        android:id="@+id/userUrl"
+        android:text="https://stocksnap.io/"
         android:layout_width="350dp"
         android:layout_height="48dp"
         android:layout_gravity="center"
@@ -32,6 +33,7 @@
         android:imeOptions="actionSend"
         android:textColor="@color/black"
         android:textSize="16sp"
+        android:contextClickable="true"
         android:inputType="textNoSuggestions"/>
 
     <Button
