@@ -315,6 +315,11 @@ public class GamePlayActivity extends AppCompatActivity
 
     private void checkEnd() {
         if (playerPoints == 6) {
+            chronometer.stop();
+            int min = Integer.parseInt(chronometer.getText().toString().split(":")[0]);
+            int sec = Integer.parseInt(chronometer.getText().toString().split(":")[1]);
+            int totalTime  = min * 60 + sec;
+
             AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(GamePlayActivity.this);
             alertDialogBuilder
                     .setMessage("GAME OVER!")
