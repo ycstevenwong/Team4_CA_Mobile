@@ -62,6 +62,7 @@ public class MainMenuActivity extends AppCompatActivity implements View.OnClickL
             editor.clear();
             editor.commit();
             Intent intent = new Intent(this,MainActivity.class);
+            intent.putExtra("bgmPos", bgmplayer.getCurrentPosition());
             startActivity(intent);
             Toast.makeText(this, "You've logged out", Toast.LENGTH_SHORT).show();
         }
@@ -116,10 +117,12 @@ public class MainMenuActivity extends AppCompatActivity implements View.OnClickL
 
     public void startGamev2() {
         Intent intent = new Intent(this, activityFetchImages.class);
+        intent.putExtra("bgmPos", bgmplayer.getCurrentPosition());
         startActivity(intent);
     }
     public void startLeaderboard(){
         Intent intent = new Intent(this, LeaderboardActivity.class);
+        intent.putExtra("bgmPos", bgmplayer.getCurrentPosition());
         startActivity(intent);
     }
 
