@@ -334,8 +334,8 @@ public class GamePlayActivity extends AppCompatActivity
         String secondCardTag = (String) secondCard.getTag();
         if (firstCardTag.equals(secondCardTag)) {
             playSFX("match_found");
-            firstCard.setVisibility(View.INVISIBLE);
-            secondCard.setVisibility(View.INVISIBLE);
+            firstCard.setVisibility(View.VISIBLE);
+            secondCard.setVisibility(View.VISIBLE);
             playerPoints++;
             tv_p1.setText(playerPoints + " of 6 matches");
         } else {
@@ -360,13 +360,11 @@ public class GamePlayActivity extends AppCompatActivity
             });
             oa1.start();
 
-
-
             oa3.addListener(new AnimatorListenerAdapter() {
                 @Override
                 public void onAnimationEnd(Animator animation) {
                     super.onAnimationEnd(animation);
-                    secondCard.setImageResource(R.drawable.ic_back);
+                    secondCard.setImageResource(R.drawable.ic_gray);
                     oa4.start();
                 }
             });
@@ -438,6 +436,7 @@ public class GamePlayActivity extends AppCompatActivity
             playSFX("game_win");
         }
     }
+
     @Override
     public void onChronometerTick(Chronometer chronometer) {
         String time = chronometer.getText().toString();
