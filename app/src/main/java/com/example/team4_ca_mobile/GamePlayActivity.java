@@ -298,6 +298,7 @@ public class GamePlayActivity extends AppCompatActivity
         iv_34.setEnabled(true);
     }
 
+
     private void checkEnd() {
         if (playerPoints == 6) {
             AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(GamePlayActivity.this);
