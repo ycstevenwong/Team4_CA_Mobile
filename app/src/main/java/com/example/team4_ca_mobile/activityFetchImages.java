@@ -11,8 +11,10 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Environment;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -53,13 +55,46 @@ public class activityFetchImages extends AppCompatActivity {
     // array of selected images
     ArrayList<ImageView> imageCollection = new ArrayList<ImageView>();
 
+    // SFX variables
+    private MediaPlayer bgmplayer = null;
+    private int bgmPos = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fetch_images);
 
+        Intent result = getIntent();
+        bgmPos = result.getIntExtra("bgmPos", 0);
+        startBGMPlayer(bgmPos);
+
         // start the process
         initUIComponents();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        interruptBGMPlayer("pause");
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        startBGMPlayer(bgmPos);
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if ((keyCode == KeyEvent.KEYCODE_BACK)) {
+            Intent intent = new Intent(this, MainMenuActivity.class);
+            intent.putExtra("bgmPos", bgmplayer.getCurrentPosition());
+            interruptBGMPlayer("stop");
+            startActivity(intent);
+            return true;
+        }
+        // if key != back key, bubble up to default system behaviour
+        return super.onKeyDown(keyCode, event);
     }
 
     private void initUIComponents() {
@@ -284,6 +319,7 @@ public class activityFetchImages extends AppCompatActivity {
             Intent i = new Intent(activityFetchImages.this, GamePlayActivity.class);
             i.putExtra("img_path", filepath);
             System.out.println(filepath);
+            interruptBGMPlayer("stop");
             startActivity(i);
         }
 
@@ -313,5 +349,33 @@ public class activityFetchImages extends AppCompatActivity {
         }*/
     }
 
+    protected void startBGMPlayer(int bgmPos) {
+        if (bgmplayer == null) {
+            // play BGM
+            bgmplayer = MediaPlayer.create(this, R.raw.dramatic_intro_music);
+            bgmplayer.seekTo(bgmPos);
+            bgmplayer.start();
+            bgmplayer.setLooping(true);
+        }
+        else {
+            bgmplayer.start();
+        }
+    }
+
+    protected int interruptBGMPlayer(String prompt) {
+        if (bgmplayer != null) {
+            if (prompt.equalsIgnoreCase("pause")) {
+                bgmplayer.pause();
+                bgmPos = bgmplayer.getCurrentPosition();
+            }
+            else {
+                bgmplayer.stop();
+                bgmplayer.release();
+                bgmplayer = null;
+                bgmPos = 0;
+            }
+        }
+        return bgmPos;
+    }
 
 }
