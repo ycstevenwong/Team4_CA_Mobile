@@ -88,7 +88,7 @@ public class activityFetchImages extends AppCompatActivity {
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if ((keyCode == KeyEvent.KEYCODE_BACK)) {
-            Intent intent = new Intent(this, login.class);
+            Intent intent = new Intent(this, MainMenuActivity.class);
             intent.putExtra("bgmPos", bgmplayer.getCurrentPosition());
             interruptBGMPlayer("stop");
             startActivity(intent);
