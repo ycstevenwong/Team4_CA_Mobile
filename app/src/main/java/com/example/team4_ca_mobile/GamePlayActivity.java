@@ -415,7 +415,7 @@ public class GamePlayActivity extends AppCompatActivity
             alertDialogBuilder
                     .setMessage("GAME OVER!")
                     .setCancelable(false)
-                    .setPositiveButton("NEW", new DialogInterface.OnClickListener() {
+                    .setPositiveButton("NEW GAME", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
                             Intent intent = new Intent(getApplicationContext(), GamePlayActivity.class);

@@ -60,7 +60,6 @@ public class LeaderboardActivity extends AppCompatActivity implements AdapterVie
             listView.setOnItemClickListener(this);
         }
 
-
         back = findViewById(R.id.back);
         back.setOnClickListener(this);
     }
