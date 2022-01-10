@@ -107,6 +107,8 @@ public class MainMenuActivity extends AppCompatActivity implements View.OnClickL
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if ((keyCode == KeyEvent.KEYCODE_BACK)) {
             Intent intent = new Intent(this, login.class);
+            String username = currUser.getString("username",null);
+            intent.putExtra("username",username);
             intent.putExtra("bgmPos", bgmplayer.getCurrentPosition());
             interruptBGMPlayer("stop");
             startActivity(intent);
