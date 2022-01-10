@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group>
+        <item
+            android:id="@+id/homeMenuItem"
+            android:icon="@drawable/home_menu_icon"
+            android:title="Home" />
+
+        <item
+            android:id="@+id/aboutUsMenuItem"
+            android:icon="@drawable/about_us"
+            android:title="About Us" />
+
+        <item
+            android:id="@+id/startGameMenuItem"
+            android:icon="@drawable/game"
+            android:title="Start Game" />
+
+        <item
+            android:id="@+id/scoreBoardMenuItem"
+            android:icon="@drawable/score_icon"
+            android:title="Score Board" />
+
+        <item
+            android:id="@+id/logoutMenuItem"
+            android:icon="@drawable/logout_icon"
+            android:title="Logout" />
+    </group>
+</menu>
