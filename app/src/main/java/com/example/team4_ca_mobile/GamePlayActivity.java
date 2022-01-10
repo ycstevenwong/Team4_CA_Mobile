@@ -426,7 +426,8 @@ public class GamePlayActivity extends AppCompatActivity
                     .setNegativeButton("EXIT", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
-                            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                            Intent intent = new Intent(getApplicationContext(), CongratulationScreen.class);
+                            intent.putExtra("totalTime", totalTime);
                             startActivity(intent);
                             finish();
                         }
