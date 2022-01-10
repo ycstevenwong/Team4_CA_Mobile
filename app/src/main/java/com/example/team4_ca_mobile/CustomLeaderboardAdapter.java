@@ -13,14 +13,14 @@ import androidx.annotation.Nullable;
 
 import java.util.List;
 
-public class customLeaderboardAdapter extends ArrayAdapter<Object> {
+public class CustomLeaderboardAdapter extends ArrayAdapter<Object> {
 
     private final Context context;
     protected List<Leaderboard> leaderboardList;
 
 
 
-    public customLeaderboardAdapter(@NonNull Context context, List<Leaderboard> leaderboardList) {
+    public CustomLeaderboardAdapter(@NonNull Context context, List<Leaderboard> leaderboardList) {
         super(context, R.layout.leaderboard_row);
         this.context = context;
         this.leaderboardList=leaderboardList;

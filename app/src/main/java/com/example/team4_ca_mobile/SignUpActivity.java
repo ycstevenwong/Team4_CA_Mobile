@@ -1,5 +1,6 @@
 package com.example.team4_ca_mobile;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -10,64 +11,59 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
-public class login extends AppCompatActivity implements View.OnClickListener {
-
+public class SignUpActivity extends AppCompatActivity implements View.OnClickListener {
     EditText username;
     EditText password;
-    Button login;
-    SharedPreferences currUser;
+    Button submit;
     SharedPreferences userList;
-    int i = 0;
+    int i=0;
 
     // SFX variables
     private MediaPlayer bgmplayer = null;
-    private int bgmPos;
+    private int bgmPos = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.activity_sign_up);
 
         Intent result = getIntent();
         bgmPos = result.getIntExtra("bgmPos", 0);
         startBGMPlayer(bgmPos);
 
-        currUser = getSharedPreferences("currUser",MODE_PRIVATE);
         userList = getSharedPreferences("userList",MODE_PRIVATE);
-        username = findViewById(R.id.loginUsernameEditText);
-        password = findViewById(R.id.loginPasswordEditText);
-        login = findViewById(R.id.loginBtn);
-        login.setOnClickListener(this);
-
+        username = findViewById(R.id.signUpUsernameEditText);
+        password = findViewById(R.id.signUpPasswordEditText);
+        submit = findViewById(R.id.signUpBtn);
+        submit.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
         int id = v.getId();
         boolean found = false;
-        String currUsername="";
-        if(id == R.id.loginBtn){
-            SharedPreferences.Editor editor = currUser.edit();
+        if(id == R.id.signUpBtn){
+            SharedPreferences.Editor editor = userList.edit();
             for(int j = 0; j < getNextLargestNum();j++){
-                if(userList.getString("signUpUsername"+j,null).equals(username.getText().toString())){
-                    if(userList.getString("signUpPassword"+j,null).equals(password.getText().toString())){
-                        found = true;
-                        currUsername = userList.getString("signUpUsername"+j,null);
-                        editor.putString("username",currUsername);
-                        editor.commit();
-                    }
+                if (userList.getString("signUpUsername" + j, null).equals(username.getText().toString())) {
+                    found = true;
                 }
             }
-            if(found){
-                editor.putString("username",currUsername);
-                Intent intent = new Intent(this, MainMenuActivity.class);
-                intent.putExtra("username",currUsername);
-                intent.putExtra("bgmPos", bgmplayer.getCurrentPosition());
-                startActivity(intent);
+
+            if(found) {
+                Toast.makeText(this, "Username exist", Toast.LENGTH_SHORT).show();
             } else {
-                Toast.makeText(this, "Username or password incorrect", Toast.LENGTH_SHORT).show();
+                editor.putString("signUpUsername"+getNextLargestNum(),username.getText().toString());
+                editor.putString("signUpPassword"+getNextLargestNum(),password.getText().toString());
+                editor.commit();
+                Intent intent = new Intent(this,MainActivity.class);
+                intent.putExtra("bgmPos", bgmplayer.getCurrentPosition());
+                interruptBGMPlayer("stop");
+                startActivity(intent);
+                Toast.makeText(this, "Account created", Toast.LENGTH_SHORT).show();
             }
         }
     }
@@ -113,7 +109,6 @@ public class login extends AppCompatActivity implements View.OnClickListener {
             bgmplayer.setLooping(true);
         }
         else {
-            bgmplayer.seekTo(bgmPos);
             bgmplayer.start();
         }
     }

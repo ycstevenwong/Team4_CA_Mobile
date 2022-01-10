@@ -1,7 +1,5 @@
 package com.example.team4_ca_mobile;
 
-import static android.widget.Toast.LENGTH_SHORT;
-
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
@@ -21,7 +19,6 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -37,7 +34,7 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.UUID;
-public class activityFetchImages extends AppCompatActivity {
+public class FetchImagesActivity extends AppCompatActivity {
 
     // define all the variables
     Button fetchButton;
@@ -142,7 +139,7 @@ public class activityFetchImages extends AppCompatActivity {
                 // if url is empty or invalid
                 if (myUrl.isEmpty() || myUrl.contains("https") != true) {
                     System.out.println("Oops, wrong URL");
-                    //Toast.makeText(activityFetchImages.this, "Please enter a URL", LENGTH_SHORT).show();
+                    //Toast.makeText(FetchImagesActivity.this, "Please enter a URL", LENGTH_SHORT).show();
                 }
 
                 fetchImagesThread = new Thread(new Runnable() {
@@ -316,7 +313,7 @@ public class activityFetchImages extends AppCompatActivity {
                  filepath = saveToFile(bitmap);
             }
 
-            Intent i = new Intent(activityFetchImages.this, GamePlayActivity.class);
+            Intent i = new Intent(FetchImagesActivity.this, GamePlayActivity.class);
             i.putExtra("img_path", filepath);
             System.out.println(filepath);
             interruptBGMPlayer("stop");
@@ -342,7 +339,7 @@ public class activityFetchImages extends AppCompatActivity {
 
         if (imgCount > 5)
         {
-            Intent i = new Intent(activityFetchImages.this, MainActivity.class);
+            Intent i = new Intent(FetchImagesActivity.this, MainActivity.class);
             i.putExtra("img_path", filepath);
             System.out.println(filepath);
             startActivity(i);

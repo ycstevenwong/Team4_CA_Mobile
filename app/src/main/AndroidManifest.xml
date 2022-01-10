@@ -20,30 +20,30 @@
             android:name=".LeaderboardActivity"
             android:exported="false" />
         <activity
-            android:name=".CongratulationScreen"
+            android:name=".CongratulationScreenActivity"
             android:exported="false" />
         <activity
-            android:name=".activityFetchImages"
+            android:name=".FetchImagesActivity"
             android:exported="false" />
         <!--
            <activity
-            android:name=".SplashScreen"
+            android:name=".SplashScreenActivity"
             android:exported="false" />
         -->
         <activity
             android:name=".MainMenuActivity"
             android:exported="false" />
         <activity
-            android:name=".sign_up"
+            android:name=".SignUpActivity"
             android:exported="false" />
         <activity
-            android:name=".login"
+            android:name=".LoginActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
             android:exported="false" />
         <activity
-            android:name=".SplashScreen"
+            android:name=".SplashScreenActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -52,7 +52,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".FetchActivity"
+            android:name=".RecyclerViewActivity"
             android:exported="true"
             android:parentActivityName=".MainMenuActivity" />
         <activity

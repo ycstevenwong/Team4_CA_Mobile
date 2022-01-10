@@ -1,10 +1,10 @@
 package com.example.team4_ca_mobile;
 
-public class Image {
+public class RecyclerImage {
 
     private String imageURL;
 
-    public Image(String imageURL) {
+    public RecyclerImage(String imageURL) {
         this.imageURL = imageURL;
     }
 

@@ -53,7 +53,7 @@ public class LeaderboardActivity extends AppCompatActivity implements AdapterVie
             leaderboardList = leaderboardList.stream().limit(10).collect(Collectors.toList());
         }
 
-        customLeaderboardAdapter adapter = new customLeaderboardAdapter(this,leaderboardList);
+        CustomLeaderboardAdapter adapter = new CustomLeaderboardAdapter(this,leaderboardList);
         listView = findViewById(R.id.leaderboardListView);
         if(listView!=null){
             listView.setAdapter(adapter);

@@ -106,7 +106,7 @@ public class MainMenuActivity extends AppCompatActivity implements View.OnClickL
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if ((keyCode == KeyEvent.KEYCODE_BACK)) {
-            Intent intent = new Intent(this, login.class);
+            Intent intent = new Intent(this, LoginActivity.class);
             String username = currUser.getString("username",null);
             intent.putExtra("username",username);
             intent.putExtra("bgmPos", bgmplayer.getCurrentPosition());
@@ -119,17 +119,17 @@ public class MainMenuActivity extends AppCompatActivity implements View.OnClickL
     }
 
     private void startCongratulationScreen() {
-        Intent intent = new Intent(this, CongratulationScreen.class);
+        Intent intent = new Intent(this, CongratulationScreenActivity.class);
         startActivity(intent);
     }
 
     public void startGame() {
-        Intent intent = new Intent(this, FetchActivity.class);
+        Intent intent = new Intent(this, RecyclerViewActivity.class);
         startActivity(intent);
     }
 
     public void startGamev2() {
-        Intent intent = new Intent(this, activityFetchImages.class);
+        Intent intent = new Intent(this, FetchImagesActivity.class);
         intent.putExtra("bgmPos", bgmplayer.getCurrentPosition());
         startActivity(intent);
     }

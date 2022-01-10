@@ -1,7 +1,5 @@
 package com.example.team4_ca_mobile;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,12 +12,12 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
-public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ViewHolder> {
+public class RecyclerImageAdapter extends RecyclerView.Adapter<RecyclerImageAdapter.ViewHolder> {
 
-    private ArrayList<Image> images;
+    private ArrayList<RecyclerImage> recyclerImages;
 
-    public ImageAdapter(ArrayList<Image> images) {
-        this.images = images;
+    public RecyclerImageAdapter(ArrayList<RecyclerImage> recyclerImages) {
+        this.recyclerImages = recyclerImages;
     }
 
     @NonNull
@@ -32,16 +30,16 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ViewHolder> 
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        Image image = images.get(position);
+        RecyclerImage recyclerImage = recyclerImages.get(position);
 
-        Picasso.get().load(image.getImageURL()).into(holder.image);
+        Picasso.get().load(recyclerImage.getImageURL()).into(holder.image);
 
     }
 
     @Override
     public int getItemCount() {
-        if(images != null) {
-            return images.size();
+        if(recyclerImages != null) {
+            return recyclerImages.size();
         } else {
             return 0;
         }

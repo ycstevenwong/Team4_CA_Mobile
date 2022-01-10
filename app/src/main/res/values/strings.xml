@@ -15,13 +15,13 @@
     <string name="mainMenuWelcome">Welcome, \t</string>
     <string name="mainMenuRulesTitle">HOW TO PLAY?</string>
     <string name="mainMenuRules">
-        Give us a cool URL with images or use URL provided \n . \n
+        Give us a cool URL with recyclerImages or use URL provided \n . \n
         Click Fetch \n . \n
-        Select 6 images you love! \n . \n
+        Select 6 recyclerImages you love! \n . \n
         Match board will be created \n . \n
-        Match all 6 image pairs the fastest you can \n \n
-        NOTE: If images are not loaded, kindly try another URL. \n
-        It may be an invalid URL or contain incompatible image formats. \n
+        Match all 6 recyclerImage pairs the fastest you can \n \n
+        NOTE: If recyclerImages are not loaded, kindly try another URL. \n
+        It may be an invalid URL or contain incompatible recyclerImage formats. \n
     </string>
     <string name="startGame">Start Game</string>
     <string name="leaderBoard">Leaderboard</string>

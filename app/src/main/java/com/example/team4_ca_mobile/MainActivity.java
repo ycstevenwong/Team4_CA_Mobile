@@ -10,7 +10,6 @@ import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.media.MediaPlayer;
 import android.os.Bundle;
-import android.view.KeyEvent;
 import android.view.View;
 import android.view.animation.Animation;
 import android.widget.Button;
@@ -70,13 +69,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v){
         int id = v.getId();
         if(id == R.id.loginButton){
-            Intent intent = new Intent(this,login.class);
+            Intent intent = new Intent(this, LoginActivity.class);
             intent.putExtra("bgmPos", bgmplayer.getCurrentPosition());
             interruptBGMPlayer("stop");
             startActivity(intent);
         }
         if(id == R.id.signUpButton){
-            Intent intent = new Intent(this,sign_up.class);
+            Intent intent = new Intent(this, SignUpActivity.class);
             intent.putExtra("bgmPos", bgmplayer.getCurrentPosition());
             interruptBGMPlayer(("stop"));
             startActivity(intent);
