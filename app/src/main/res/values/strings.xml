@@ -14,20 +14,10 @@
     <string name="mainMenuText">User</string>
     <string name="mainMenuWelcome">Welcome, \t</string>
     <string name="mainMenuRulesTitle">HOW TO PLAY?</string>
-    <string name="mainMenuRules">
-        Give us a cool URL with recyclerImages or use URL provided \n . \n
-        Click Fetch \n . \n
-        Select 6 recyclerImages you love! \n . \n
-        Match board will be created \n . \n
-        Match all 6 recyclerImage pairs the fastest you can \n \n
-        NOTE: If recyclerImages are not loaded, kindly try another URL. \n
-        It may be an invalid URL or contain incompatible recyclerImage formats. \n
-    </string>
     <string name="startGame">Start Game</string>
     <string name="leaderBoard">Leaderboard</string>
     <string name="back">Back</string>
     <string name="letsPlay">Game Time!</string>
-    <string name="letsPlayTxt">Time is running fast...</string>
     <string name="backToHome">Back To Home</string>
     <string name="leaderboardTxt">Username \t \t \t \t Score</string>
 </resources>

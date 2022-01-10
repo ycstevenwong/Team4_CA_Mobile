@@ -17,7 +17,5 @@ public class AboutTheGameActivity extends AppCompatActivity {
         WebView mWebView = findViewById(R.id.webView);
         mWebView.setWebViewClient(new WebViewClient());
         mWebView.loadUrl("https://memorygame711796649.wordpress.com/about-the-game/");
-
-
     }
 }
