@@ -127,6 +127,20 @@
         android:textColor="@color/black"
         android:fontFamily="@font/druk_wide_bold"
         android:id="@+id/leaderboardBtn"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/red"
+        android:text="About the game"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/logoutBtn"
+        app:layout_constraintTop_toBottomOf="@id/leaderboardBtn"
+        android:textColor="@color/black"
+        android:fontFamily="@font/druk_wide_bold"
+        android:id="@+id/aboutTheGameBtn"/>
+
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/logoutBtn"
         android:layout_width="wrap_content"
