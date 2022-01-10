@@ -11,10 +11,22 @@
         android:id="@+id/topLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="0dp"
         android:orientation="vertical"
         app:layout_constraintHeight_percent="0.1"
         app:layout_constraintTop_toTopOf="parent">
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/backToHome"
+            android:backgroundTint="@color/white"
+            android:fontFamily="@font/monument_extended"
+            android:textColor="@color/black"
+            android:textSize="10sp"
+            android:textAlignment="viewStart"
+            android:drawableLeft="@drawable/back_button"
+            android:id="@+id/back" />
 
     <LinearLayout
         android:id="@+id/userInput"
@@ -29,14 +41,14 @@
             android:layout_height="40dp"
             android:layout_gravity="center"
             android:layout_marginStart="5dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="0dp"
             android:background="@color/gray"
             android:drawableLeft="@drawable/search_icon"
             android:text="https://www.stockio.com/"
             android:importantForAutofill="no"
             android:imeOptions="actionSend"
             android:textColor="@color/black"
-            android:textSize="16sp"
+            android:textSize="14sp"
             android:radius="5dp"
             android:inputType="textNoSuggestions" />
 
@@ -46,7 +58,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="0dp"
             android:fontFamily="@font/monument_extended"
             android:text="@string/fetch"
             android:textSize="12sp"
@@ -61,7 +73,6 @@
             android:layout_marginLeft="50dp"
             android:layout_height="20dp"
             android:layout_gravity="center"
-            android:layout_marginTop="15dp"
             android:background="@color/gray"
             style="?android:attr/progressBarStyleHorizontal"/>
 
@@ -79,7 +90,7 @@
         android:id="@+id/row01"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="5dp"
         android:orientation="horizontal"
         app:layout_constraintHeight_percent="0.15"
         app:layout_constraintTop_toBottomOf="@+id/topLayout" >

@@ -6,31 +6,44 @@
     android:layout_height="match_parent"
     tools:context=".GamePlayActivity">
 
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/backToHome"
+        android:backgroundTint="@color/white"
+        android:fontFamily="@font/monument_extended"
+        android:textColor="@color/black"
+        android:textSize="10sp"
+        android:textAlignment="viewStart"
+        android:drawableLeft="@drawable/back_button"
+        android:id="@+id/back" />
+
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="90dp"
         android:text="@string/letsPlay"
         android:fontFamily="@font/druk_wide_bold"
         android:textAllCaps="true"
         android:textSize="25sp"
         android:textColor="@color/black"
-        android:background="@color/gray"
         android:textAlignment="center"
         android:gravity="center"
-        android:layout_marginTop="0dp" />
+        android:background="@color/white"
+        android:layout_marginTop="30dp"
+        android:padding="30dp"/>
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="25dp"
         android:drawableLeft="@drawable/login_character"
         android:scaleX="-1"
-        android:scaleY="0.95"/>
+        android:scaleY="0.85" />
 
     <include
         layout="@layout/images"
         android:layout_width="wrap_content"
-        android:layout_marginTop="230dp"
+        android:layout_marginTop="250dp"
         android:layout_height="400dp"
         android:layout_centerHorizontal="true" />
 
@@ -41,7 +54,7 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="160dp"
+        android:layout_marginTop="190dp"
         android:layout_marginLeft="10dp"
         android:textSize="16sp"
         android:textColor="@color/white"
@@ -61,7 +74,7 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="160dp"
+        android:layout_marginTop="190dp"
         android:layout_marginRight="10dp"
         android:textColor="@color/white"
         android:textAlignment="viewEnd"
