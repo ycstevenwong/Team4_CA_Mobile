@@ -7,16 +7,10 @@
     tools:context=".LeaderboardActivity"
     android:orientation="vertical">
 
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="30dp"
-        android:src="@drawable/logo_red_part" />
-
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/backToHome"
-        android:layout_marginTop="10dp"
         android:backgroundTint="@color/white"
         android:fontFamily="@font/monument_extended"
         android:textColor="@color/black"
@@ -24,6 +18,11 @@
         android:textAlignment="viewStart"
         android:drawableLeft="@drawable/back_button"
         android:id="@+id/back" />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:src="@drawable/logo_red_part" />
 
     <TextView
         android:layout_width="match_parent"
