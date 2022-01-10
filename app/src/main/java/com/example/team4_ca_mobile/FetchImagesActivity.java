@@ -20,6 +20,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -39,15 +40,17 @@ public class FetchImagesActivity extends AppCompatActivity implements View.OnCli
 
     // define all the variables
     SharedPreferences currUser;
+
     Button back;
     Button fetchButton;
-    String[] standardNum = {"1", "2", "3", "4", "5", "6"};
     ProgressBar progressBar;
     TextView progressBarTextView;
     EditText url;
+
     int i = 0;
     static  int row =0;
     static  int count=0;
+    String[] standardNum = {"1", "2", "3", "4", "5", "6"};
 
     // the thread
     private Thread fetchImagesThread;
@@ -79,12 +82,10 @@ public class FetchImagesActivity extends AppCompatActivity implements View.OnCli
 
     @Override
     public void onClick(View v) {
-
         int id = v.getId();
         String username = currUser.getString("username",null);
 
         if(id == R.id.back) {
-
             Intent intent = new Intent(this, MainMenuActivity.class);
             intent.putExtra("username",username);
 
@@ -193,14 +194,12 @@ public class FetchImagesActivity extends AppCompatActivity implements View.OnCli
                                         System.out.println("3count of counts " + count);
                                         File destFile = makeFileDestPath(imgSrc);
 
-                                      /*  if (row == 20) {
-                                            row =0;
-                                        }*/
                                         if (downloadImages(imgSrc, destFile)) {
                                             runOnUiThread(new Runnable() {
                                                 @Override
                                                 public void run() {
                                                     System.out.println("in ui thread");
+
                                                     //List of image view
                                                     String path = destFile.getAbsolutePath();
 
@@ -221,7 +220,6 @@ public class FetchImagesActivity extends AppCompatActivity implements View.OnCli
                                                         progressBar.setVisibility(View.GONE);
                                                         progressBarTextView.setText("Complete");
                                                     }
-                                                        // row = row + 1;
                                                 }
                                             });
                                         }
@@ -231,9 +229,6 @@ public class FetchImagesActivity extends AppCompatActivity implements View.OnCli
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
-                        /*
-                            File destFile = makeFileDestPath(imgSrc);
-                            downloadImages(imgSrc, destFile);*/
                     }
                 });
                 fetchImagesThread.start();
@@ -264,8 +259,8 @@ public class FetchImagesActivity extends AppCompatActivity implements View.OnCli
         }
     }
 
-    private File makeFileDestPath(String imgURL)
-    {
+    private File makeFileDestPath(String imgURL) {
+
         String destFilename = UUID.randomUUID().toString() +
                 imgURL.lastIndexOf(".") + 1;
 
@@ -304,12 +299,12 @@ public class FetchImagesActivity extends AppCompatActivity implements View.OnCli
     }
 
 
-
     public void sendSelectedImage(View v) throws FileNotFoundException {
+
      // deselect and select logic
         ImageView selectedImage = (ImageView) v;
 
-        if(imageCollection.size() <= 4) {
+        if(imageCollection.size() <= 5) {
 
             //check if image is already in the collection
             if (imageCollection.contains(selectedImage)) {
@@ -323,13 +318,16 @@ public class FetchImagesActivity extends AppCompatActivity implements View.OnCli
                 selectedImage.setBackground(highlight);
             }
         }
-        else
-        {
+        else {
             imageCollection.add(selectedImage);
             Drawable highlight = getResources().getDrawable(R.drawable.highlight);
             selectedImage.setBackground(highlight);
             String filepath = "";
-            for(int i = 0;i<6;i++)
+
+            Toast.makeText(FetchImagesActivity.this, "Loading your Game!",
+                    Toast.LENGTH_SHORT).show();
+
+            for(int i = 0;i==5;i++)
             {
                 BitmapDrawable bitmapDrawable = (BitmapDrawable) imageCollection.get(i).getDrawable();
                 Bitmap bitmap = bitmapDrawable.getBitmap();
@@ -353,8 +351,7 @@ public class FetchImagesActivity extends AppCompatActivity implements View.OnCli
         String filepath = saveToFile(b);
         imgCount++;
 
-        if (imgCount > 5)
-        {
+        if (imgCount > 5) {
             Intent i = new Intent(FetchImagesActivity.this, MainActivity.class);
             i.putExtra("img_path", filepath);
             System.out.println(filepath);

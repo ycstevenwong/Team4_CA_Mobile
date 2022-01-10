@@ -33,12 +33,10 @@ public class AboutTheGameActivity extends AppCompatActivity implements View.OnCl
 
     @Override
     public void onClick(View v) {
-
         int id = v.getId();
         String username = currUser.getString("username",null);
 
         if(id == R.id.back){
-
             Intent intent = new Intent(this,MainMenuActivity.class);
             intent.putExtra("username",username);
 

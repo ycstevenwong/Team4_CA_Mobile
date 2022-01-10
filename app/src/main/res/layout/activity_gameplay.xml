@@ -7,16 +7,16 @@
     tools:context=".GamePlayActivity">
 
     <Button
+        android:id="@+id/back"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/backToHome"
+        android:text="@string/back"
         android:backgroundTint="@color/white"
         android:fontFamily="@font/monument_extended"
         android:textColor="@color/black"
         android:textSize="10sp"
         android:textAlignment="viewStart"
-        android:drawableLeft="@drawable/back_button"
-        android:id="@+id/back" />
+        android:drawableLeft="@drawable/back_button" />
 
     <TextView
         android:layout_width="match_parent"

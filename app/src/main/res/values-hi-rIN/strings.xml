@@ -13,7 +13,7 @@
     <string name="urlText">"यू. आर. एल .दर्ज करो "</string>
     <string name="download">"यूआरएल की प्रतीक्षा में "</string>
     <string name="mainMenuText">"उपयोगकर्ता "</string>
-    <string name="mainMenuWelcome">"स्वागत, "</string>
+    <string name="mainMenuWelcome">"स्वागत, \t"</string>
     <string name="mainMenuRulesTitle">कैसे खेलें ?</string>
     <string name="startGame">खेल शुरू</string>
     <string name="leaderBoard">लीडरबोर्ड</string>

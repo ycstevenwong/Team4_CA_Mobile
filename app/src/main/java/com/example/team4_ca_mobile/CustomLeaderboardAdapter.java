@@ -18,8 +18,6 @@ public class CustomLeaderboardAdapter extends ArrayAdapter<Object> {
     private final Context context;
     protected List<Leaderboard> leaderboardList;
 
-
-
     public CustomLeaderboardAdapter(@NonNull Context context, List<Leaderboard> leaderboardList) {
         super(context, R.layout.leaderboard_row);
         this.context = context;
@@ -30,16 +28,18 @@ public class CustomLeaderboardAdapter extends ArrayAdapter<Object> {
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-        if(convertView==null){
+        if(convertView==null) {
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
             convertView = inflater.inflate(R.layout.leaderboard_row,parent,false);
         }
+
         TextView username = convertView.findViewById(R.id.leaderboardUsername);
         username.setText(leaderboardList.get(position).getUsername());
+
         TextView time = convertView.findViewById(R.id.leaderboardTime);
         time.setText(leaderboardList.get(position).getTime().toString());
+
         return convertView;
     }
-
 
 }

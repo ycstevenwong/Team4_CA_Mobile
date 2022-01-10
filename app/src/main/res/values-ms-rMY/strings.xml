@@ -13,7 +13,7 @@
     <string name="urlText">URL:</string>
     <string name="download">Memuat turun</string>
     <string name="mainMenuText">Ahli</string>
-    <string name="mainMenuWelcome">Selamat Datang</string>
+    <string name="mainMenuWelcome">Selamat Datang, \t</string>
     <string name="mainMenuRulesTitle">BAGAIMANA BERMAIN?</string>
     <string name="startGame">Mula</string>
     <string name="leaderBoard">Leaderboard</string>

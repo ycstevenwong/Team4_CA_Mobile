@@ -19,11 +19,14 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class LeaderboardActivity extends AppCompatActivity implements AdapterView.OnItemClickListener,View.OnClickListener {
+
     SharedPreferences lbPref;
     SharedPreferences currUser;
+
     Button back;
     List<Leaderboard> leaderboardList;
     ListView listView;
+
     int i = 0;
 
     // SFX variables
@@ -108,16 +111,17 @@ public class LeaderboardActivity extends AppCompatActivity implements AdapterVie
         return super.onKeyDown(keyCode, event);
     }
 
-    public int getNextLargestNum(){
-        while(lbPref.contains("user"+i)){
+    public int getNextLargestNum() {
+        while(lbPref.contains("user"+i)) {
             i++;
         }
         return i;
     }
-    private void sortTheList(List<Leaderboard> list){
-        if(list.size()==1){
+
+    private void sortTheList(List<Leaderboard> list) {
+        if(list.size()==1) {
             System.out.println("Only one inside");
-        }else if(list.size()>1){
+        } else if(list.size()>1) {
             Collections.sort(list, new Comparator<Leaderboard>() {
                 @Override
                 public int compare(Leaderboard o1, Leaderboard o2) {

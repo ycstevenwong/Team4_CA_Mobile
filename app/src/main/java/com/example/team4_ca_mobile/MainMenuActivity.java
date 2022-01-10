@@ -13,6 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainMenuActivity extends AppCompatActivity implements View.OnClickListener {
+
     Button logout,leaderboard;
     Button startGameBtnv2, aboutTheGameBtn, howToPlayBtn;
     TextView username;
