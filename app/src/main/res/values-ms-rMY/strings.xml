@@ -15,15 +15,6 @@
     <string name="mainMenuText">Ahli</string>
     <string name="mainMenuWelcome">Selamat Datang</string>
     <string name="mainMenuRulesTitle">BAGAIMANA BERMAIN?</string>
-    <string name="mainMenuRules">
-        Masukkan URL kegemaran anda \n . \n
-        20 gambar akan dimuat turn \n . \n
-        Pilih 6 gambar yang anda suka! \n . \n
-        Permainan akan dicipta untuk anda \n . \n
-        Padankan 6 jodoh gambar secepat mungkin \n \n
-        PERHATIAN: Jika gambar tidak dimuat turn, sila cuba URL lain. \n
-        URL tersebut mungkin mengandungi format gambar yang tidak sesuai.
-    </string>
     <string name="startGame">Mula</string>
     <string name="leaderBoard">Leaderboard</string>
     <string name="back">Balik</string>
