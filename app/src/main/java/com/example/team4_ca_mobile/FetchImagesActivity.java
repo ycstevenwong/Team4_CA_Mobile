@@ -143,11 +143,11 @@ public class FetchImagesActivity extends AppCompatActivity implements View.OnCli
         ImageView imageView13 = findViewById(R.id.image13);
         ImageView imageView14 = findViewById(R.id.image14);
         ImageView imageView15 = findViewById(R.id.image15);
-        ImageView imageView16= findViewById(R.id.image16);
+        ImageView imageView16 = findViewById(R.id.image16);
         ImageView imageView17 = findViewById(R.id.image17);
         ImageView imageView18 = findViewById(R.id.image18);
         ImageView imageView19 = findViewById(R.id.image19);
-        ImageView imageView20= findViewById(R.id.image20);
+        ImageView imageView20 = findViewById(R.id.image20);
 
         // array to pass to the next activity
         ImageView[] imgViews = {imageView01,imageView02,imageView03,imageView04,imageView05,imageView06,
@@ -304,7 +304,7 @@ public class FetchImagesActivity extends AppCompatActivity implements View.OnCli
      // deselect and select logic
         ImageView selectedImage = (ImageView) v;
 
-        if(imageCollection.size() <= 5) {
+        if(imageCollection.size() < 5) {
 
             //check if image is already in the collection
             if (imageCollection.contains(selectedImage)) {
@@ -318,16 +318,16 @@ public class FetchImagesActivity extends AppCompatActivity implements View.OnCli
                 selectedImage.setBackground(highlight);
             }
         }
-        else {
+        else if (imageCollection.size() == 5) {
+            Toast.makeText(FetchImagesActivity.this, "Loading your Game!",
+                    Toast.LENGTH_SHORT).show();
+
             imageCollection.add(selectedImage);
             Drawable highlight = getResources().getDrawable(R.drawable.highlight);
             selectedImage.setBackground(highlight);
             String filepath = "";
 
-            Toast.makeText(FetchImagesActivity.this, "Loading your Game!",
-                    Toast.LENGTH_SHORT).show();
-
-            for(int i = 0;i==5;i++)
+            for(int i = 0; i <= 5; i++)
             {
                 BitmapDrawable bitmapDrawable = (BitmapDrawable) imageCollection.get(i).getDrawable();
                 Bitmap bitmap = bitmapDrawable.getBitmap();
