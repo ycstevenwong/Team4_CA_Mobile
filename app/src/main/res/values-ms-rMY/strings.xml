@@ -25,6 +25,9 @@
         URL tersebut mungkin mengandungi format gambar yang tidak sesuai.
     </string>
     <string name="startGame">Mula</string>
-
-
+    <string name="leaderBoard">Leaderboard</string>
+    <string name="back">Balik</string>
+    <string name="letsPlay">Mula Bermain!</string>
+    <string name="backToHome">Balik</string>
+    <string name="leaderboardTxt">Nama Pengguna \t \t \t \t Markah</string>
 </resources>

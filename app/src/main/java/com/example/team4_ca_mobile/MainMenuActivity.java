@@ -14,7 +14,7 @@ import android.widget.Toast;
 
 public class MainMenuActivity extends AppCompatActivity implements View.OnClickListener {
     Button logout,leaderboard;
-    Button startGameBtn, startGameBtnv2, congratulationScreenBtn, aboutTheGameBtn;
+    Button startGameBtnv2, aboutTheGameBtn;
     TextView username;
     SharedPreferences currUser;
 
@@ -43,15 +43,8 @@ public class MainMenuActivity extends AppCompatActivity implements View.OnClickL
         leaderboard = findViewById(R.id.leaderboardBtn);
         leaderboard.setOnClickListener(this);
 
-        startGameBtn = findViewById(R.id.startGameBtn);
-        startGameBtn.setOnClickListener(this);
-
-
         startGameBtnv2 = findViewById(R.id.startGameBtnv2);
         startGameBtnv2.setOnClickListener(this);
-
-        congratulationScreenBtn = findViewById(R.id.congratulationScreen);
-        congratulationScreenBtn.setOnClickListener(this);
 
         aboutTheGameBtn = findViewById(R.id.aboutTheGameBtn);
         aboutTheGameBtn.setOnClickListener(this);
@@ -59,9 +52,11 @@ public class MainMenuActivity extends AppCompatActivity implements View.OnClickL
 
     @Override
     public void onClick(View v) {
+
         SharedPreferences.Editor editor = currUser.edit();
         int id = v.getId();
-        if(id == R.id.logoutBtn){
+
+        if(id == R.id.logoutBtn) {
             editor.clear();
             editor.commit();
             Intent intent = new Intent(this,MainActivity.class);
@@ -69,21 +64,15 @@ public class MainMenuActivity extends AppCompatActivity implements View.OnClickL
             startActivity(intent);
             Toast.makeText(this, "You've logged out", Toast.LENGTH_SHORT).show();
         }
-        else if(id == R.id.startGameBtn) {
-            startGame();
-        }
         else if(id == R.id.startGameBtnv2) {
             startGamev2();
         }
-
-        else if(id == R.id.congratulationScreen) {
-            startCongratulationScreen();
-        }else if(id == R.id.leaderboardBtn){
+        else if(id == R.id.leaderboardBtn) {
             startLeaderboard();
-
-    }else if(id == R.id.aboutTheGameBtn){
+        }
+        else if(id == R.id.aboutTheGameBtn) {
         startWebView();
-    }
+        }
     }
 
     private void startWebView() {
@@ -116,16 +105,6 @@ public class MainMenuActivity extends AppCompatActivity implements View.OnClickL
         }
         // if key != back key, bubble up to default system behaviour
         return super.onKeyDown(keyCode, event);
-    }
-
-    private void startCongratulationScreen() {
-        Intent intent = new Intent(this, CongratulationScreenActivity.class);
-        startActivity(intent);
-    }
-
-    public void startGame() {
-        Intent intent = new Intent(this, RecyclerViewActivity.class);
-        startActivity(intent);
     }
 
     public void startGamev2() {

@@ -27,7 +27,6 @@
     <string name="leaderBoard">Leaderboard</string>
     <string name="back">Back</string>
     <string name="letsPlay">Game Time!</string>
-    <string name="letsPlayTxt">Time is running fast...</string>
     <string name="backToHome">Back To Home</string>
     <string name="leaderboardTxt">Username \t \t \t \t Score</string>
 </resources>
