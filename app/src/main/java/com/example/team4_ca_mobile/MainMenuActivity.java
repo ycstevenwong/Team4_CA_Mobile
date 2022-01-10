@@ -14,7 +14,7 @@ import android.widget.Toast;
 
 public class MainMenuActivity extends AppCompatActivity implements View.OnClickListener {
     Button logout,leaderboard;
-    Button startGameBtn, startGameBtnv2, congratulationScreenBtn;
+    Button startGameBtn, startGameBtnv2, congratulationScreenBtn, aboutTheGameBtn;
     TextView username;
     SharedPreferences currUser;
 
@@ -52,6 +52,9 @@ public class MainMenuActivity extends AppCompatActivity implements View.OnClickL
 
         congratulationScreenBtn = findViewById(R.id.congratulationScreen);
         congratulationScreenBtn.setOnClickListener(this);
+
+        aboutTheGameBtn = findViewById(R.id.aboutTheGameBtn);
+        aboutTheGameBtn.setOnClickListener(this);
     }
 
     @Override
@@ -77,7 +80,15 @@ public class MainMenuActivity extends AppCompatActivity implements View.OnClickL
             startCongratulationScreen();
         }else if(id == R.id.leaderboardBtn){
             startLeaderboard();
-        }
+
+    }else if(id == R.id.aboutTheGameBtn){
+        startWebView();
+    }
+    }
+
+    private void startWebView() {
+        Intent intent = new Intent(this, AboutTheGameActivity.class);
+        startActivity(intent);
     }
 
     @Override
