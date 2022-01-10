@@ -8,6 +8,7 @@
     android:orientation="vertical">
 
     <Button
+        android:id="@+id/back"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/backToHome"
@@ -16,15 +17,16 @@
         android:textColor="@color/black"
         android:textSize="10sp"
         android:textAlignment="viewStart"
-        android:drawableLeft="@drawable/back_button"
-        android:id="@+id/back" />
+        android:drawableLeft="@drawable/back_button" />
 
     <ImageView
+        android:id="@+id/leaderboardTopRed"
         android:layout_width="match_parent"
         android:layout_height="30dp"
         android:src="@drawable/logo_red_part" />
 
     <TextView
+        android:id="@+id/leaderboardTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/leaderBoard"
@@ -37,6 +39,7 @@
         android:padding="20dp"/>
 
     <TextView
+        android:id="@+id/leaderboardTableHeading"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/leaderboardTxt"
@@ -47,20 +50,22 @@
         android:layout_marginTop="20dp" />
 
     <ListView
+        android:id="@+id/leaderboardListView"
         android:layout_width="match_parent"
         android:layout_height="300dp"
-        android:id="@+id/leaderboardListView"
         android:scrollbars="vertical"
         android:layout_marginTop="15dp"
         android:textAlignment="center"/>
 
     <ImageView
+        android:id="@+id/leaderboardBottomRed"
         android:layout_width="match_parent"
         android:layout_height="30dp"
         android:scaleY="-1"
         android:src="@drawable/logo_red_part" />
 
     <ImageView
+        android:id="@+id/leaderboardBottomLogo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
