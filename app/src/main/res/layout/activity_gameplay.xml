@@ -12,7 +12,7 @@
         android:text="@string/letsPlay"
         android:fontFamily="@font/druk_wide_bold"
         android:textAllCaps="true"
-        android:textSize="20sp"
+        android:textSize="25sp"
         android:textColor="@color/black"
         android:background="@color/gray"
         android:textAlignment="center"
@@ -22,7 +22,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="0dp"
+        android:layout_marginTop="20dp"
         android:drawableLeft="@drawable/login_character"
         android:scaleX="-1"
         android:scaleY="0.95"/>
@@ -30,22 +30,25 @@
     <include
         layout="@layout/images"
         android:layout_width="wrap_content"
-        android:layout_height="300dp"
-        android:layout_centerVertical="true"
+        android:layout_marginTop="230dp"
+        android:layout_height="400dp"
         android:layout_centerHorizontal="true" />
 
     <TextView
         android:id="@+id/tv_p1"
-        android:layout_width="200dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_marginTop="160dp"
-        android:layout_marginLeft="20dp"
+        android:layout_marginLeft="10dp"
         android:textSize="16sp"
         android:textColor="@color/white"
         android:background="@color/black"
+        android:padding="10dp"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
         android:textAllCaps="true"
         android:textAlignment="viewStart"
         android:fontFamily="@font/monument_extended"
@@ -53,16 +56,19 @@
 
     <Chronometer
         android:id="@+id/chronometer"
-        android:layout_width="170dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
         android:layout_marginTop="160dp"
-        android:layout_marginRight="20dp"
+        android:layout_marginRight="10dp"
         android:textColor="@color/white"
         android:textAlignment="viewEnd"
         android:background="@color/black"
+        android:padding="10dp"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
         android:fontFamily="@font/monument_extended"
         android:textSize="16sp" />
 
