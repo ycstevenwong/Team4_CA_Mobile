@@ -13,7 +13,7 @@
     <string name="download">Waiting for URL</string>
     <string name="mainMenuText">User</string>
     <string name="mainMenuWelcome">Welcome, \t</string>
-    <string name="mainMenuRulesTitle">HOW TO PLAY?</string>
+    <string name="mainMenuRulesTitle">HOW TO PLAY</string>
     <string name="startGame">Start Game</string>
     <string name="leaderBoard">Leaderboard</string>
     <string name="back">Back</string>

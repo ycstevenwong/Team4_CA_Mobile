@@ -15,12 +15,10 @@
     <string name="mainMenuText">"उपयोगकर्ता "</string>
     <string name="mainMenuWelcome">"स्वागत, "</string>
     <string name="mainMenuRulesTitle">कैसे खेलें ?</string>
-    <string name="mainMenuRules">[...]</string>
     <string name="startGame">खेल शुरू</string>
     <string name="leaderBoard">लीडरबोर्ड</string>
     <string name="back">पीछे</string>
     <string name="letsPlay">खेलने का समय!.</string>
-    <string name="letsPlayTxt">समय तेजी से भाग रहा है...</string>
     <string name="backToHome">घर वापिस जा रहा हूँ</string>
     <string name="leaderboardTxt">उपयोगकर्ता नाम स्कोर</string>
 </resources>

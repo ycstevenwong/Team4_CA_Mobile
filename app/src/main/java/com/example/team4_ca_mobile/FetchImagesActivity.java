@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.ContextWrapper;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
@@ -34,9 +35,11 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.UUID;
-public class FetchImagesActivity extends AppCompatActivity {
+public class FetchImagesActivity extends AppCompatActivity implements View.OnClickListener {
 
     // define all the variables
+    SharedPreferences currUser;
+    Button back;
     Button fetchButton;
     String[] standardNum = {"1", "2", "3", "4", "5", "6"};
     ProgressBar progressBar;
@@ -61,12 +64,32 @@ public class FetchImagesActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fetch_images);
 
+        currUser = getSharedPreferences("currUser",MODE_PRIVATE);
+
         Intent result = getIntent();
         bgmPos = result.getIntExtra("bgmPos", 0);
         startBGMPlayer(bgmPos);
 
+        back = findViewById(R.id.back);
+        back.setOnClickListener(this);
+
         // start the process
         initUIComponents();
+    }
+
+    @Override
+    public void onClick(View v) {
+
+        int id = v.getId();
+        String username = currUser.getString("username",null);
+
+        if(id == R.id.back) {
+
+            Intent intent = new Intent(this, MainMenuActivity.class);
+            intent.putExtra("username",username);
+
+            startActivity(intent);
+        }
     }
 
     @Override
@@ -320,19 +343,12 @@ public class FetchImagesActivity extends AppCompatActivity {
             startActivity(i);
         }
 
-
-
-
-
-
-
-
         /*ImageView imageView = (ImageView) v;
 
         Drawable highlight = getResources().getDrawable(R.drawable.highlight);
         imageView.setBackground(highlight);
-*/
-        /*BitmapDrawable bd = (BitmapDrawable) selectedImage.getDrawable();
+
+        BitmapDrawable bd = (BitmapDrawable) selectedImage.getDrawable();
         Bitmap b = bd.getBitmap();
         String filepath = saveToFile(b);
         imgCount++;

@@ -10,7 +10,7 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Button;
 
-public class AboutTheGameActivity extends AppCompatActivity implements View.OnClickListener {
+public class HowToPlayActivity extends AppCompatActivity implements View.OnClickListener {
 
     SharedPreferences currUser;
     Button back;
@@ -19,7 +19,7 @@ public class AboutTheGameActivity extends AppCompatActivity implements View.OnCl
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_about_the_game);
+        setContentView(R.layout.activity_how_to_play);
 
         currUser = getSharedPreferences("currUser",MODE_PRIVATE);
 
@@ -46,9 +46,3 @@ public class AboutTheGameActivity extends AppCompatActivity implements View.OnCl
         }
     }
 }
-
-
-
-
-
-
