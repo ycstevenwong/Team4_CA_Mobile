@@ -19,7 +19,5 @@ public class AboutTheGameActivity extends AppCompatActivity {
         mWebView.loadUrl("https://memorygame711796649.wordpress.com/about-the-game/");
 
 
-
-
     }
 }

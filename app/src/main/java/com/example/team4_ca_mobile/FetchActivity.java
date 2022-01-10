@@ -34,15 +34,13 @@ import java.util.Locale;
 import java.util.UUID;
 
 public class FetchActivity extends AppCompatActivity implements View.OnClickListener {
-    //UNDER TRIAL FOR RECYCLER VIEW, WORKS IF URL HARDCODED BUT CANT FETCH
-    //CLICK FETCH TWICE TO SEE WHAT IT LOOKS LIKE
+    //UNDER TRIAL FOR RECYCLER VIEW TO FECTH IMAGES
+
     private RecyclerView images;
     private RecyclerView.Adapter adapter;
 
     EditText url; //user's URL input text
     Button fetchBtn; //fetch images button
-    ProgressBar progressBar;
-    TextView progressBarTxt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,33 +63,34 @@ public class FetchActivity extends AppCompatActivity implements View.OnClickList
         this.images.setAdapter(adapter);
     }
 
-
     private ArrayList<Image> initImages() {
-
-        //EditText url = findViewById(R.id.userUrl);
-        String userURL = url.getText().toString();
 
         ArrayList<Image> list = new ArrayList<>();
         list.add(new Image("https://bit.ly/CBImageCinque"));
         list.add(new Image("https://bit.ly/CBImageParis"));
         list.add(new Image("https://bit.ly/CBImageRio"));
-        list.add(new Image("https://stocksnap.io/"));
+        list.add(new Image("https://cdn.stocksnap.io/img-thumbs/960w/machu%20picchu-l" +
+                "andscape_1IXAEMT62N.jpg"));
+        list.add(new Image("https://media.cntraveler.com/photos/5c2cfc9f6b0c2057eb60d5" +
+                "79/5:4/w_3440,h_2752,c_limit/Edinburgh%20Castle_GettyImages-157509228.jpg"));
+        list.add(new Image("https://cdn.stocksnap.io/img-thumbs/960w/machu%20picchu-lan" +
+                "dscape_1IXAEMT62N.jpg"));
+        list.add(new Image("https://cdn.stocksnap.io/img-thumbs/960w/taj-mahal_2EJYQBPJ" +
+                "UU.jpg"));
+        list.add(new Image("https://cdn.stocksnap.io/img-thumbs/960w/london%20bridge-uk" +
+                "_CLELOQWXUP.jpg"));
+        list.add(new Image("https://cdn.stocksnap.io/img-thumbs/960w/tree-wanaka_DDIPPI" +
+                "XLZP.jpg"));
 
+        return list;
+
+        //to add images from URL
+        /* EditText url = findViewById(R.id.userUrl);
+        String userURL = url.getText().toString();
         ArrayList<String> imgURL = addImageURL(userURL);
         for(String singleURL : imgURL) {
             list.add(new Image(singleURL));
-        }
-
-        /*new Thread(new Runnable() {
-        // @Override
-        // public void run() { //don't call any UI components in run()
-        //code here to download images or call the download method
-        //   if(Thread.interrupted()) { //to be in the download method
-        //       return; //stop download
-        //    }
-              url = findViewById(R.id.url);*/
-
-        return list;
+        }*/
     }
 
     private static ArrayList<String> addImageURL(String userURL) {
@@ -108,15 +107,10 @@ public class FetchActivity extends AppCompatActivity implements View.OnClickList
 
                 if (imgSrc.contains(".jpg") || imgSrc.contains(".jpeg")) {
                     for(int i = 0; i < 20; i++) {
-                fetchedURLs.add(imgSrc);
-                System.out.println(imgSrc); }}
-
-                /*if (imgSrc.contains(".jpg") || imgSrc.contains(".jpeg")) {
-                    for(int i = 0; i < 20; i++) {
-                    list.add(new Image(imgSrc));
-                    list.add(new Image(String.format("https://%s", imgSrc)));
-                  }
-               } */
+                        fetchedURLs.add(imgSrc);
+                        System.out.println(imgSrc);
+                    }
+                }
             }
             return fetchedURLs;
         }
@@ -146,14 +140,9 @@ public class FetchActivity extends AppCompatActivity implements View.OnClickList
         else if (id == R.id.url) {
             if(url.getText().toString().substring(0, 7).contains("https://") != true) {
                 Toast.makeText(FetchActivity.this, "Invalid URL", Toast.LENGTH_SHORT).show();
-
             }
         }
     }
-
-
-
-
 
 }
 

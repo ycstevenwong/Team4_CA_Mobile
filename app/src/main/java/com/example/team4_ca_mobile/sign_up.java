@@ -39,7 +39,6 @@ public class sign_up extends AppCompatActivity implements View.OnClickListener {
         password = findViewById(R.id.signUpPasswordEditText);
         submit = findViewById(R.id.signUpBtn);
         submit.setOnClickListener(this);
-
     }
 
     @Override
@@ -53,9 +52,10 @@ public class sign_up extends AppCompatActivity implements View.OnClickListener {
                     found = true;
                 }
             }
-            if(found){
+
+            if(found) {
                 Toast.makeText(this, "Username exist", Toast.LENGTH_SHORT).show();
-            }else{
+            } else {
                 editor.putString("signUpUsername"+getNextLargestNum(),username.getText().toString());
                 editor.putString("signUpPassword"+getNextLargestNum(),password.getText().toString());
                 editor.commit();

@@ -43,13 +43,11 @@ public class SplashScreen extends AppCompatActivity {
         whitePart = findViewById(R.id.white_part);
         redPart = findViewById(R.id.red_part);
 
-
         appName = findViewById(R.id.main_text);
         devName = findViewById(R.id.bottom_text);
 
         whitePart.setAnimation(logoAnimation);
         redPart.setAnimation(logoAnimation);
-
 
         appName.setAnimation(nameAnimation);
 

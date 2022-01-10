@@ -15,18 +15,21 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        android:id="@+id/signUpImg"
-        />
+        android:layout_marginTop="40dp"
+        android:id="@+id/signUpImg" />
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginTop="40dp"
         android:text="@string/house_of_cards"
-        android:textSize="30sp"
+        android:textSize="28sp"
         android:fontFamily="@font/druk_wide_bold"
-        android:textColor="@color/white"/>
+        android:textColor="@color/white" />
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -37,14 +40,15 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintHorizontal_bias="0.15"
         android:text="@string/sign_up"
+        android:textAllCaps="true"
         android:textSize="30sp"
         android:textColor="@color/white"
-        android:background="@color/gray"
+        android:background="@color/black"
         android:paddingRight="60dp"
         android:paddingLeft="20dp"
         android:paddingVertical="20dp"
         android:fontFamily="@font/druk_wide_bold"
-        android:id="@+id/signUpTxtView"/>
+        android:id="@+id/signUpTxtView" />
 
     <EditText
         android:layout_width="300dp"
@@ -59,7 +63,8 @@
         android:hint="@string/username"
         android:background="@color/gray"
         android:textColor="@color/light_dark"
-        android:fontFamily="@font/monument_extended"/>
+        android:fontFamily="@font/monument_extended" />
+
     <EditText
         android:layout_width="300dp"
         android:layout_height="48dp"
@@ -71,9 +76,11 @@
         android:paddingLeft="20dp"
         android:id="@+id/signUpPasswordEditText"
         android:hint="@string/password"
+        android:inputType="textPassword"
         android:background="@color/gray"
         android:textColor="@color/light_dark"
-        android:fontFamily="@font/monument_extended"/>/>
+        android:fontFamily="@font/monument_extended" />
+
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -82,7 +89,8 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintVertical_bias="0.1"
-        android:layout_marginLeft="175dp"
+        android:drawableLeft="@drawable/app_image_smaller"
+        android:layout_marginLeft="150dp"
         android:backgroundTint="@color/red"
         android:fontFamily="@font/monument_extended"
         android:textColor="@color/white"
@@ -90,4 +98,5 @@
         android:text="@string/submit"
         android:id="@+id/signUpBtn"
         app:cornerRadius="10dp"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

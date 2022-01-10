@@ -66,7 +66,7 @@ public class login extends AppCompatActivity implements View.OnClickListener {
                 intent.putExtra("username",currUsername);
                 intent.putExtra("bgmPos", bgmplayer.getCurrentPosition());
                 startActivity(intent);
-            }else{
+            } else {
                 Toast.makeText(this, "Username or password incorrect", Toast.LENGTH_SHORT).show();
             }
         }
