@@ -84,11 +84,13 @@ public class MainMenuActivity extends AppCompatActivity implements View.OnClickL
 
     private void startWebView() {
         Intent intent = new Intent(this, AboutTheGameActivity.class);
+        intent.putExtra("bgmPos", bgmplayer.getCurrentPosition());
         startActivity(intent);
     }
 
     private void startWebView2() {
         Intent intent = new Intent(this, HowToPlayActivity.class);
+        intent.putExtra("bgmPos", bgmplayer.getCurrentPosition());
         startActivity(intent);
     }
 

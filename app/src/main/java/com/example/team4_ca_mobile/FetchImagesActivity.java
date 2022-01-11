@@ -88,7 +88,7 @@ public class FetchImagesActivity extends AppCompatActivity implements View.OnCli
         if(id == R.id.back) {
             Intent intent = new Intent(this, MainMenuActivity.class);
             intent.putExtra("username",username);
-
+            intent.putExtra("bgmPos", bgmplayer.getCurrentPosition());
             startActivity(intent);
         }
     }
