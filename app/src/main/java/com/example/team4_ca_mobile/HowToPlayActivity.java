@@ -8,26 +8,15 @@ import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
-import android.widget.AdapterView;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.Button;
-import android.widget.ListView;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
-import java.util.stream.Collectors;
+public class HowToPlayActivity extends AppCompatActivity implements View.OnClickListener {
 
-public class LeaderboardActivity extends AppCompatActivity implements AdapterView.OnItemClickListener,View.OnClickListener {
-
-    SharedPreferences lbPref;
     SharedPreferences currUser;
-
     Button back;
-    List<Leaderboard> leaderboardList;
-    ListView listView;
-
-    int i = 0;
+    WebView mWebView;
 
     // SFX variables
     private MediaPlayer bgmplayer = null;
@@ -36,50 +25,31 @@ public class LeaderboardActivity extends AppCompatActivity implements AdapterVie
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_leaderboard);
-
-        Intent result = getIntent();
-        bgmPos = result.getIntExtra("bgmPos", 0);
+        setContentView(R.layout.activity_how_to_play);
+        Intent intent = getIntent();
+        bgmPos = intent.getIntExtra("bgmPos", 0);
         startBGMPlayer(bgmPos);
 
-        lbPref = getSharedPreferences("leaderboard",MODE_PRIVATE);
         currUser = getSharedPreferences("currUser",MODE_PRIVATE);
-        leaderboardList = new ArrayList<>();
-        for(int i = 0; i < getNextLargestNum(); i++){
-            String username = lbPref.getString("user"+i,null);
-            Integer time = lbPref.getInt("userTime"+i,0);
-            Leaderboard curr = new Leaderboard(username,time);
-            leaderboardList.add(curr);
-        }
-        sortTheList(leaderboardList);
-        if(leaderboardList.size()>10){
-            leaderboardList = leaderboardList.stream().limit(10).collect(Collectors.toList());
-        }
 
-        CustomLeaderboardAdapter adapter = new CustomLeaderboardAdapter(this,leaderboardList);
-        listView = findViewById(R.id.leaderboardListView);
-        if(listView!=null){
-            listView.setAdapter(adapter);
-            listView.setOnItemClickListener(this);
-        }
+        mWebView = findViewById(R.id.webView);
+        mWebView.setWebViewClient(new WebViewClient());
+        mWebView.loadUrl("https://memorygame711796649.wordpress.com/about-the-game/");
 
         back = findViewById(R.id.back);
         back.setOnClickListener(this);
     }
 
     @Override
-    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
-    }
-
-    @Override
     public void onClick(View v) {
         int id = v.getId();
+        String username = currUser.getString("username",null);
+
         if(id == R.id.back){
             Intent intent = new Intent(this,MainMenuActivity.class);
-            String username = currUser.getString("username",null);
             intent.putExtra("username",username);
             intent.putExtra("bgmPos", bgmplayer.getCurrentPosition());
+
             startActivity(intent);
         }
     }
@@ -111,26 +81,6 @@ public class LeaderboardActivity extends AppCompatActivity implements AdapterVie
         return super.onKeyDown(keyCode, event);
     }
 
-    public int getNextLargestNum() {
-        while(lbPref.contains("user"+i)) {
-            i++;
-        }
-        return i;
-    }
-
-    private void sortTheList(List<Leaderboard> list) {
-        if(list.size()==1) {
-            System.out.println("Only one inside");
-        } else if(list.size()>1) {
-            Collections.sort(list, new Comparator<Leaderboard>() {
-                @Override
-                public int compare(Leaderboard o1, Leaderboard o2) {
-                    return o1.getTime().compareTo(o2.getTime());
-                }
-            });
-        }
-    }
-
     protected void startBGMPlayer(int bgmPos) {
         if (bgmplayer == null) {
             // play BGM
@@ -159,4 +109,5 @@ public class LeaderboardActivity extends AppCompatActivity implements AdapterVie
         }
         return bgmPos;
     }
+
 }

@@ -5,7 +5,7 @@ public class Leaderboard {
     private String username;
     private Integer time;
 
-    public Leaderboard(String username,Integer time){
+    public Leaderboard(String username,Integer time) {
         this.username=username;
         this.time=time;
     }

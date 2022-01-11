@@ -14,6 +14,9 @@
         android:supportsRtl="true"
         android:theme="@style/FullScreen">
         <activity
+            android:name=".HowToPlayActivity"
+            android:exported="false" />
+        <activity
             android:name=".AboutTheGameActivity"
             android:exported="false" />
         <activity
@@ -25,11 +28,6 @@
         <activity
             android:name=".FetchImagesActivity"
             android:exported="false" />
-        <!--
-           <activity
-            android:name=".SplashScreenActivity"
-            android:exported="false" />
-        -->
         <activity
             android:name=".MainMenuActivity"
             android:exported="false" />

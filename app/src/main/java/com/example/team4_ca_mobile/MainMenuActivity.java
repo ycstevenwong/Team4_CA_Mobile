@@ -13,8 +13,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainMenuActivity extends AppCompatActivity implements View.OnClickListener {
+
     Button logout,leaderboard;
-    Button startGameBtnv2, aboutTheGameBtn;
+    Button startGameBtnv2, aboutTheGameBtn, howToPlayBtn;
     TextView username;
     SharedPreferences currUser;
 
@@ -48,6 +49,9 @@ public class MainMenuActivity extends AppCompatActivity implements View.OnClickL
 
         aboutTheGameBtn = findViewById(R.id.aboutTheGameBtn);
         aboutTheGameBtn.setOnClickListener(this);
+
+        howToPlayBtn = findViewById(R.id.mainMenuRulesTitle);
+        howToPlayBtn.setOnClickListener(this);
     }
 
     @Override
@@ -71,12 +75,22 @@ public class MainMenuActivity extends AppCompatActivity implements View.OnClickL
             startLeaderboard();
         }
         else if(id == R.id.aboutTheGameBtn) {
-        startWebView();
+            startWebView();
+        }
+        else if(id ==R.id.mainMenuRulesTitle) {
+            startWebView2();
         }
     }
 
     private void startWebView() {
         Intent intent = new Intent(this, AboutTheGameActivity.class);
+        intent.putExtra("bgmPos", bgmplayer.getCurrentPosition());
+        startActivity(intent);
+    }
+
+    private void startWebView2() {
+        Intent intent = new Intent(this, HowToPlayActivity.class);
+        intent.putExtra("bgmPos", bgmplayer.getCurrentPosition());
         startActivity(intent);
     }
 

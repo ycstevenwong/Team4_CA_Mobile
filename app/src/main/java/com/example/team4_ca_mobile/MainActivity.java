@@ -25,7 +25,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private MediaPlayer bgmplayer = null;
     private int bgmPos = 0;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,7 +34,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         currUser = getSharedPreferences("currUser",MODE_PRIVATE);
 
-        if(currUser.contains("username")){
+        if(currUser.contains("username")) {
             intent = new Intent(this, MainMenuActivity.class);
             intent.putExtra("username",currUser.getString("username",null));
             startActivity(intent);
@@ -56,25 +55,25 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         startBGMPlayer(bgmPos);
     }
 
-    protected void loginOrSignUpBtn(){
+    protected void loginOrSignUpBtn() {
         int[] ids = {R.id.loginButton,R.id.signUpButton};
-        for(int i = 0; i < ids.length;i++){
+        for(int i = 0; i < ids.length;i++) {
             Button btn = findViewById(ids[i]);
-            if(btn!=null){
+            if(btn!=null) {
                 btn.setOnClickListener(this);
             }
         }
     }
     @Override
-    public void onClick(View v){
+    public void onClick(View v) {
         int id = v.getId();
-        if(id == R.id.loginButton){
+        if(id == R.id.loginButton) {
             Intent intent = new Intent(this, LoginActivity.class);
             intent.putExtra("bgmPos", bgmplayer.getCurrentPosition());
             interruptBGMPlayer("stop");
             startActivity(intent);
         }
-        if(id == R.id.signUpButton){
+        if(id == R.id.signUpButton) {
             Intent intent = new Intent(this, SignUpActivity.class);
             intent.putExtra("bgmPos", bgmplayer.getCurrentPosition());
             interruptBGMPlayer(("stop"));
@@ -83,7 +82,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     @SuppressLint("WrongConstant")
-    private void blinking(){
+    private void blinking() {
         TextView textView = findViewById(R.id.houseOfCardTxtView);
         ObjectAnimator animator = ObjectAnimator.ofInt(textView,"textColor", Color.WHITE);
         animator.setDuration(1500);

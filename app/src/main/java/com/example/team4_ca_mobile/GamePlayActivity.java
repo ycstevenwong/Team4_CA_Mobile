@@ -20,6 +20,7 @@ import android.os.SystemClock;
 import android.view.View;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.DecelerateInterpolator;
+import android.widget.Button;
 import android.widget.Chronometer;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -34,16 +35,19 @@ public class GamePlayActivity extends AppCompatActivity
 
     TextView tv_p1;
     ImageView iv_11, iv_12, iv_13, iv_14, iv_21, iv_22, iv_23, iv_24, iv_31, iv_32, iv_33, iv_34;
+    ImageView firstCard, secondCard;
+    Button back;
 
     private ArrayList<String> cardsArray = new ArrayList<>();
     private int cardNumber = 0;
-    ImageView firstCard, secondCard;
     private int playerPoints = 0;
-    private Chronometer chronometer;
     private int clickTime = 0;
+    int i = 0;
+
+    private Chronometer chronometer;
+
     SharedPreferences lbPref;
     SharedPreferences currUser;
-    int i = 0;
 
     private MediaPlayer sfxplayer = null;
     private MediaPlayer bgmplayer = null;
@@ -52,6 +56,8 @@ public class GamePlayActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gameplay);
+
+        currUser = getSharedPreferences("currUser",MODE_PRIVATE);
 
         tv_p1 = findViewById(R.id.tv_p1);
 
@@ -85,6 +91,9 @@ public class GamePlayActivity extends AppCompatActivity
         assignCards();
 
         startBGMPlayer();
+
+        back = findViewById(R.id.back);
+        back.setOnClickListener(this);
     }
 
     @Override
@@ -126,6 +135,8 @@ public class GamePlayActivity extends AppCompatActivity
 
     @Override
     public void onClick(View view) {
+        int id = view.getId();
+
         if (view == iv_11) {
             flipCard(iv_11);
             if (cardNumber == 2) {
@@ -271,6 +282,11 @@ public class GamePlayActivity extends AppCompatActivity
                     }
                 }, 1000);
             }
+        } else if (id == R.id.back) {
+            Intent intent = new Intent(this,MainMenuActivity.class);
+            String username = currUser.getString("username",null);
+            intent.putExtra("username",username);
+            startActivity(intent);
         }
     }
 

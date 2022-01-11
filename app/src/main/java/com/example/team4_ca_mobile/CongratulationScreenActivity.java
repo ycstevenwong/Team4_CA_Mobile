@@ -3,6 +3,7 @@ package com.example.team4_ca_mobile;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
@@ -12,13 +13,18 @@ import android.widget.TextView;
 
 public class CongratulationScreenActivity extends AppCompatActivity {
 
+    SharedPreferences currUser;
+    Button back;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_congratulation_screen);
 
+        currUser = getSharedPreferences("currUser",MODE_PRIVATE);
+
         MediaPlayer player;
-        player = MediaPlayer.create(this,R.raw.win_sound_effect);
+        player = MediaPlayer.create(this,R.raw.sci_fi_laser_gun_shot_sound_effect);
         player.start();
 
         Intent intent = getIntent();
@@ -26,11 +32,15 @@ public class CongratulationScreenActivity extends AppCompatActivity {
         TextView textViewScore = findViewById(R.id.score);
         textViewScore.setText("Score: " + score);
 
-        Button button = findViewById(R.id.button);
-        button.setOnClickListener(new View.OnClickListener() {
+        back = findViewById(R.id.back);
+        back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                String username = currUser.getString("username",null);
+
                 Intent mainMenu = new Intent(getApplicationContext(), MainMenuActivity.class);
+                mainMenu.putExtra("username",username);
+
                 startActivity(mainMenu);
             }
         });

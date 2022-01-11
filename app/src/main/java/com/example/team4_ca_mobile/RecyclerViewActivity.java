@@ -77,16 +77,37 @@ public class RecyclerViewActivity extends AppCompatActivity implements View.OnCl
         }*/
     }
 
+    @Override
+    public void onClick(View v) {
+
+        int id = v.getId();
+        url = findViewById(R.id.userUrl);
+
+        if (id == R.id.fetchBtn) {
+            ArrayList<RecyclerImage> recyclerImages = initImages();
+            this.images = (RecyclerView) findViewById(R.id.allImages);
+
+            RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(this);
+            this.images.setLayoutManager(mLayoutManager);
+
+            adapter = new RecyclerImageAdapter(recyclerImages);
+            this.images.setAdapter(adapter);
+        }
+        else if (id == R.id.url) {
+            if(url.getText().toString().substring(0, 7).contains("https://") != true) {
+                Toast.makeText(RecyclerViewActivity.this, "Invalid URL", Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+
     private static ArrayList<String> addImageURL(String userURL) {
 
         ArrayList<String> fetchedURLs = new ArrayList<>();
-
         try {
             Document doc = Jsoup.connect(userURL).get();
             Elements twentyImages = doc.select("img[src]");
 
             for (Element oneImage : twentyImages) {
-
                 String imgSrc = oneImage.attr("src");
 
                 if (imgSrc.contains(".jpg") || imgSrc.contains(".jpeg")) {
@@ -103,29 +124,6 @@ public class RecyclerViewActivity extends AppCompatActivity implements View.OnCl
             System.out.println(userURL);
         }
         return fetchedURLs;
-    }
-
-    @Override
-    public void onClick(View v) {
-
-        int id = v.getId();
-        url = findViewById(R.id.userUrl);
-
-        if (id == R.id.fetchBtn) {
-
-            ArrayList<RecyclerImage> recyclerImages = initImages();
-            this.images = (RecyclerView) findViewById(R.id.allImages);
-            RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(this);
-            this.images.setLayoutManager(mLayoutManager);
-
-            adapter = new RecyclerImageAdapter(recyclerImages);
-            this.images.setAdapter(adapter);
-        }
-        else if (id == R.id.url) {
-            if(url.getText().toString().substring(0, 7).contains("https://") != true) {
-                Toast.makeText(RecyclerViewActivity.this, "Invalid URL", Toast.LENGTH_SHORT).show();
-            }
-        }
     }
 
 }

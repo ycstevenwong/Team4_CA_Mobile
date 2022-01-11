@@ -15,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class SignUpActivity extends AppCompatActivity implements View.OnClickListener {
+
     EditText username;
     EditText password;
     Button submit;
@@ -93,8 +94,8 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
         return super.onKeyDown(keyCode, event);
     }
 
-    public int getNextLargestNum(){
-        while(userList.contains("signUpUsername"+i)){
+    public int getNextLargestNum() {
+        while(userList.contains("signUpUsername"+i)) {
             i++;
         }
         return i;

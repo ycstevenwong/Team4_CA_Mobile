@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.ContextWrapper;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
@@ -19,6 +20,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -34,17 +36,21 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.UUID;
-public class FetchImagesActivity extends AppCompatActivity {
+public class FetchImagesActivity extends AppCompatActivity implements View.OnClickListener {
 
     // define all the variables
+    SharedPreferences currUser;
+
+    Button back;
     Button fetchButton;
-    String[] standardNum = {"1", "2", "3", "4", "5", "6"};
     ProgressBar progressBar;
     TextView progressBarTextView;
     EditText url;
+
     int i = 0;
     static  int row =0;
     static  int count=0;
+    String[] standardNum = {"1", "2", "3", "4", "5", "6"};
 
     // the thread
     private Thread fetchImagesThread;
@@ -61,12 +67,30 @@ public class FetchImagesActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fetch_images);
 
+        currUser = getSharedPreferences("currUser",MODE_PRIVATE);
+
         Intent result = getIntent();
         bgmPos = result.getIntExtra("bgmPos", 0);
         startBGMPlayer(bgmPos);
 
+        back = findViewById(R.id.back);
+        back.setOnClickListener(this);
+
         // start the process
         initUIComponents();
+    }
+
+    @Override
+    public void onClick(View v) {
+        int id = v.getId();
+        String username = currUser.getString("username",null);
+
+        if(id == R.id.back) {
+            Intent intent = new Intent(this, MainMenuActivity.class);
+            intent.putExtra("username",username);
+            intent.putExtra("bgmPos", bgmplayer.getCurrentPosition());
+            startActivity(intent);
+        }
     }
 
     @Override
@@ -119,11 +143,11 @@ public class FetchImagesActivity extends AppCompatActivity {
         ImageView imageView13 = findViewById(R.id.image13);
         ImageView imageView14 = findViewById(R.id.image14);
         ImageView imageView15 = findViewById(R.id.image15);
-        ImageView imageView16= findViewById(R.id.image16);
+        ImageView imageView16 = findViewById(R.id.image16);
         ImageView imageView17 = findViewById(R.id.image17);
         ImageView imageView18 = findViewById(R.id.image18);
         ImageView imageView19 = findViewById(R.id.image19);
-        ImageView imageView20= findViewById(R.id.image20);
+        ImageView imageView20 = findViewById(R.id.image20);
 
         // array to pass to the next activity
         ImageView[] imgViews = {imageView01,imageView02,imageView03,imageView04,imageView05,imageView06,
@@ -170,14 +194,12 @@ public class FetchImagesActivity extends AppCompatActivity {
                                         System.out.println("3count of counts " + count);
                                         File destFile = makeFileDestPath(imgSrc);
 
-                                      /*  if (row == 20) {
-                                            row =0;
-                                        }*/
                                         if (downloadImages(imgSrc, destFile)) {
                                             runOnUiThread(new Runnable() {
                                                 @Override
                                                 public void run() {
                                                     System.out.println("in ui thread");
+
                                                     //List of image view
                                                     String path = destFile.getAbsolutePath();
 
@@ -198,7 +220,6 @@ public class FetchImagesActivity extends AppCompatActivity {
                                                         progressBar.setVisibility(View.GONE);
                                                         progressBarTextView.setText("Complete");
                                                     }
-                                                        // row = row + 1;
                                                 }
                                             });
                                         }
@@ -208,9 +229,6 @@ public class FetchImagesActivity extends AppCompatActivity {
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
-                        /*
-                            File destFile = makeFileDestPath(imgSrc);
-                            downloadImages(imgSrc, destFile);*/
                     }
                 });
                 fetchImagesThread.start();
@@ -241,8 +259,8 @@ public class FetchImagesActivity extends AppCompatActivity {
         }
     }
 
-    private File makeFileDestPath(String imgURL)
-    {
+    private File makeFileDestPath(String imgURL) {
+
         String destFilename = UUID.randomUUID().toString() +
                 imgURL.lastIndexOf(".") + 1;
 
@@ -281,12 +299,12 @@ public class FetchImagesActivity extends AppCompatActivity {
     }
 
 
-
     public void sendSelectedImage(View v) throws FileNotFoundException {
+
      // deselect and select logic
         ImageView selectedImage = (ImageView) v;
 
-        if(imageCollection.size() <= 4) {
+        if(imageCollection.size() < 5) {
 
             //check if image is already in the collection
             if (imageCollection.contains(selectedImage)) {
@@ -300,13 +318,16 @@ public class FetchImagesActivity extends AppCompatActivity {
                 selectedImage.setBackground(highlight);
             }
         }
-        else
-        {
+        else if (imageCollection.size() == 5) {
+            Toast.makeText(FetchImagesActivity.this, "Loading your Game!",
+                    Toast.LENGTH_SHORT).show();
+
             imageCollection.add(selectedImage);
             Drawable highlight = getResources().getDrawable(R.drawable.highlight);
             selectedImage.setBackground(highlight);
             String filepath = "";
-            for(int i = 0;i<6;i++)
+
+            for(int i = 0; i <= 5; i++)
             {
                 BitmapDrawable bitmapDrawable = (BitmapDrawable) imageCollection.get(i).getDrawable();
                 Bitmap bitmap = bitmapDrawable.getBitmap();
@@ -320,25 +341,17 @@ public class FetchImagesActivity extends AppCompatActivity {
             startActivity(i);
         }
 
-
-
-
-
-
-
-
         /*ImageView imageView = (ImageView) v;
 
         Drawable highlight = getResources().getDrawable(R.drawable.highlight);
         imageView.setBackground(highlight);
-*/
-        /*BitmapDrawable bd = (BitmapDrawable) selectedImage.getDrawable();
+
+        BitmapDrawable bd = (BitmapDrawable) selectedImage.getDrawable();
         Bitmap b = bd.getBitmap();
         String filepath = saveToFile(b);
         imgCount++;
 
-        if (imgCount > 5)
-        {
+        if (imgCount > 5) {
             Intent i = new Intent(FetchImagesActivity.this, MainActivity.class);
             i.putExtra("img_path", filepath);
             System.out.println(filepath);
