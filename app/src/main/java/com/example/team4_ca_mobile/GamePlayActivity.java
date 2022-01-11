@@ -57,6 +57,8 @@ public class GamePlayActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gameplay);
 
+        currUser = getSharedPreferences("currUser",MODE_PRIVATE);
+
         tv_p1 = findViewById(R.id.tv_p1);
 
         iv_11 = findViewById(R.id.iv_11);
