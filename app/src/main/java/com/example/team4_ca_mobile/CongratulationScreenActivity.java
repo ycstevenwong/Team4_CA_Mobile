@@ -24,7 +24,7 @@ public class CongratulationScreenActivity extends AppCompatActivity {
         currUser = getSharedPreferences("currUser",MODE_PRIVATE);
 
         MediaPlayer player;
-        player = MediaPlayer.create(this,R.raw.win_sound_effect);
+        player = MediaPlayer.create(this,R.raw.sci_fi_laser_gun_shot_sound_effect);
         player.start();
 
         Intent intent = getIntent();
