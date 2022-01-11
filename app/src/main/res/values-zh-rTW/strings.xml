@@ -4,9 +4,9 @@
     <string name="house_of_cards">HOUSE OF CARDS</string>
     <string name="login">登入</string>
     <string name="sign_up">登錄</string>
-    <string name="username">Username</string>
-    <string name="password">Password</string>
-    <string name="submit">Submit</string>
+    <string name="username">用戶名</string>
+    <string name="password">密碼</string>
+    <string name="submit">提交</string>
     <string name="logout">登出</string>
     <string name="dev_name">由 Team 4 建立</string>
     <string name="fetch">取得</string>
@@ -14,7 +14,7 @@
     <string name="mainMenuText">使用者</string>
     <string name="mainMenuWelcome">歡迎</string>
     <string name="mainMenuRulesTitle">如何遊玩?</string>
-    <string name="startGame">開始</string>
+    <string name="startGame">開始遊戲</string>
     <string name="leaderBoard">封神榜</string>
     <string name="back">回去</string>
     <string name="letsPlay">開始遊戲囉</string>
